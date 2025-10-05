@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: "postgres:17.2"
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "test"
+      POSTGRES_PASSWORD: "test"
+      POSTGRES_DB: "test"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+  backend:
+    build: ./back-end 
+    container_name: backend_app
+    command: npm run dev
+    volumes:
+      - ./back-end:/app        # monta o código do host
+      - /app/node_modules      # mantém os node_modules do container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_USER: test
+      DB_PASS: test
+      DB_NAME: test
