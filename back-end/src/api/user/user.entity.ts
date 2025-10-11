@@ -1,5 +1,5 @@
 import { Entity, Column, OneToMany, Unique } from 'typeorm';
-import { BaseEntity } from '../base/baseEntity.entity';
+import { BaseEntity } from '../util/base/baseEntity.entity';
 import { Category } from '../category/category.entity';
 import { BankAccount } from '../bank-account/bank-account.entity';
 

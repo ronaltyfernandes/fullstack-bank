@@ -1,6 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { PaginationOptionsQuery } from '../util/pagination-options.filter';
+import { SelectUserDto } from './dto/select-user.dto';
+import { UserFilter } from './dto/filters-user.dto';
+import { ApiPaginatedResponse } from '../util/base/pagination/api-paginated-response.decorator';
+// import { JwtAuthGuard } from 'src/auth/jwt-auth-guard';
 
 @Controller('user')
 export class UserController {
@@ -11,16 +16,15 @@ export class UserController {
     return this.userService.create(dto);
   }
 
-  // @Get()
-  // @ApiPaginatedResponse(SelectAbortionDto)
-  // findAll(@Query() paginationOptions: PaginationOptionsQuery,
-  // @Query() abortionFilter: AbortionFilter) {
-  //   const options: IPaginationOptions = {
-  //     limit: paginationOptions.limit ?? 10,
-  //     page: paginationOptions.page ?? 1,
-  //   };
-  //   return this.abortionService.findAll(options, abortionFilter);
-  // }
+  @Get('/')
+  @ApiPaginatedResponse(SelectUserDto)
+  findAll(@Query() paginationOptions: PaginationOptionsQuery, @Query() abortionFilter: UserFilter) {
+    const options: typeof paginationOptions = {
+      limit: paginationOptions.limit ?? 10,
+      page: paginationOptions.page ?? 1,
+    };
+    return this.userService.findAll(options, abortionFilter);
+  }
 
   // @Get(':id')
   // @ApiResponse({

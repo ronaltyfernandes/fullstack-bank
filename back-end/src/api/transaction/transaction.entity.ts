@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { BaseEntity } from '../base/baseEntity.entity';
+import { BaseEntity } from '../util/base/baseEntity.entity';
 import { IncomeExpense } from '../income-expense/income-expense.entity';
 import { Category } from '../category/category.entity';
 import { PaymentMethod } from '../payment-method/payment-method.entity';

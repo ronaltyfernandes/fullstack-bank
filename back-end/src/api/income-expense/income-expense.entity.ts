@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany } from 'typeorm';
-import { BaseEntity } from '../base/baseEntity.entity';
+import { BaseEntity } from '../util/base/baseEntity.entity';
 import { IncomeExpenseType } from '../../types/Enums';
 import { Transaction } from '../transaction/transaction.entity';
 
