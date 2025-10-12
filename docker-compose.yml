@@ -14,7 +14,7 @@ services:
   backend:
     build: ./back-end 
     container_name: backend_app
-    command: npm run dev
+    command: npm run start:dev
     volumes:
       - ./back-end:/app        # monta o código do host
       - /app/node_modules      # mantém os node_modules do container

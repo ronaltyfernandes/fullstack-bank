@@ -6,6 +6,7 @@ import { UserModule } from './api/user/user.module';
 import { BankAccountModule } from './api/bank-account/bank-account.module';
 import { CategoryModule } from './api/category/category.module';
 import { AuthModule } from './auth/auth.module';
+import { TransactionModule } from './api/transaction/transaction.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AuthModule } from './auth/auth.module';
     UserModule,
     BankAccountModule,
     CategoryModule,
+    TransactionModule,
     AuthModule,
   ],
   controllers: [AppController],

@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { DatabaseExceptionFilter } from './api/util/exceptions/database-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +14,9 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+
+  // Filtro global para capturar erros de banco
+  app.useGlobalFilters(new DatabaseExceptionFilter());
 
   await app.listen(process.env.PORT ?? 3000);
 }

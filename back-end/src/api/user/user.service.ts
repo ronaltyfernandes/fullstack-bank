@@ -7,6 +7,7 @@ import { UserFilter } from './dto/filters-user.dto';
 import { SelectUserDto } from './dto/select-user.dto';
 import { IPaginationOptions, paginate, Pagination } from 'nestjs-typeorm-paginate';
 import applyFilters from '../util/aplyFilters.filter';
+import { UpdateBankAccountDto } from '../bank-account/dto/update-bank-account.dto';
 
 @Injectable()
 export class UserService {
@@ -42,6 +43,10 @@ export class UserService {
 
   async create(createUserDto: CreateUserDto) {
     return this.repository.save({ ...createUserDto });
+  }
+
+  async update(id: number, updateBankAccountDto: UpdateBankAccountDto) {
+    return this.repository.update(id, { ...updateBankAccountDto });
   }
 
   async delete(id: number) {
