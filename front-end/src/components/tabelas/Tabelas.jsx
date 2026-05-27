@@ -1,3 +1,5 @@
+import RenderCell from "./RenderCell";
+
 export function Table({ columns, data }) {
   return (
     <div className="overflow-x-auto rounded-xl border border-text/10">
@@ -25,9 +27,7 @@ export function Table({ columns, data }) {
             >
               {columns.map((col, colIndex) => (
                 <td key={colIndex} className="px-4 py-3 text-sm text-text">
-                  {col.render
-                    ? col.render(row[col.accessor], row)
-                    : String(row[col.accessor])}
+                  <RenderCell value={row[col.accessor]} col={col} row={row} />
                 </td>
               ))}
             </tr>

@@ -1,5 +1,5 @@
 import CardGraficoBarras from "../../components/graficos/CardGraficoBarras";
-import CardGraficoPizza from "../../components/graficos/CardGraficoPizza";
+import CardGraficoPizza from "../../components/graficos/CardGraficoDunut";
 import CardGraficoLinha from "../../components/graficos/CardGraficoLinha";
 
 //todo: colocar icone em filtros

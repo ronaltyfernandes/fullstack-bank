@@ -8,15 +8,15 @@ import { Table } from "../../components/tabelas/Tabelas";
       render: (value) => `R$ ${value.toFixed(2)}`
     },
     { header: "Banco", accessor: "banco" },
-    { header: "Cor", accessor: "cor" },
+    { header: "Cor", accessor: "color" },
     { header: "Ações", accessor: "acoes" },
     { header : "Status", accessor: "status" }
   ];
 
   const data = [
-    { nome: "Conta Nubank", banco: "Nubank", saldo: 2500.5, cor: "#007bff", status: "Ativa" },
-    { nome: "Conta Itaú", banco: "Itaú", saldo: 1200, cor: "#28a745", status: "Ativa" },
-    { nome: "Conta Bradesco", banco: "Bradesco", saldo: 0, cor: "#dc3545", status: "Inativa" }
+    { nome: "Conta Nubank", banco: "Nubank", saldo: 2500.5, color: "#007bff", status: "Ativa" },
+    { nome: "Conta Itaú", banco: "Itaú", saldo: 1200, color: "#28a745", status: "Ativa" },
+    { nome: "Conta Bradesco", banco: "Bradesco", saldo: 0, color: "#dc3545", status: "Inativa" }
   ];
 
 function Contas() {

@@ -1,7 +1,5 @@
 import { Footer } from "../components/Footer";
 import { Outlet } from "react-router-dom";
-import { HeaderMobile } from "../components/headers/HeaderMobile";
-import { HeaderDesktop } from "../components/headers/HeaderDesktop";
 import Header from "../components/headers/Header";
 
 export function DefaultLayout() {
@@ -9,7 +7,7 @@ export function DefaultLayout() {
     <>
       <Header />
       <main className="bg-bg min-h-screen pb-2">
-        <div className="max-w-[1640px] mx-auto px-4">
+        <div className="max-w-410 mx-auto px-4">
           <Outlet />
         </div>
       </main>

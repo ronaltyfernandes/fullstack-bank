@@ -7,7 +7,7 @@ const dataPie = [
   { id: 3, value: 20, label: 'gasto D' },
 ];
 
-function CardGraficoPizza() {
+function CardGraficoDunut() {
   return (
     <div className="flex flex-col h-[340px] bg-bg-secondary items-center justify-between rounded-md">
       <div className="flex flex-col lg:flex-row lg:px-8 px-2 pt-4 justify-between mb-4 items-center gap-2 w-full">
@@ -24,4 +24,4 @@ function CardGraficoPizza() {
   )
 }
 
-export default CardGraficoPizza
+export default CardGraficoDunut;
