@@ -12,7 +12,7 @@ export class BankAccount extends BaseEntity {
   @Column({ type: 'boolean', default: true, nullable: false })
   isActive!: boolean;
 
-  @Column({ type: 'bytea', nullable: true }) // pode ser opcional
+  @Column({ type: 'bytea', nullable: true }) //to do mudar para cor
   icon?: Buffer;
 
   @Column({ type: 'varchar', length: 100, nullable: false })
