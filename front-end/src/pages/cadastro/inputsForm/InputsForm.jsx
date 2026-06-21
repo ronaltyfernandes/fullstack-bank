@@ -17,6 +17,7 @@ function InputsForm({ formData, onChange }) {
         onChange={onChange}
         type="text"
         placeholder="Digite seu nome completo"
+        icon={<User size={18} />}
       />
 
       <InputForm
@@ -27,6 +28,7 @@ function InputsForm({ formData, onChange }) {
         onChange={onChange}
         type="email"
         placeholder="Digite seu e-mail"
+        icon={<Mail size={18} />}
       />
 
       <InputForm
@@ -37,6 +39,7 @@ function InputsForm({ formData, onChange }) {
         onChange={onChange}
         type="password"
         placeholder="Digite sua senha"
+        icon={<LockKeyhole size={18} />}
       />
 
       <InputForm
@@ -47,6 +50,7 @@ function InputsForm({ formData, onChange }) {
         onChange={onChange}
         type="password"
         placeholder="Digite sua senha novamente"
+        icon={<LockKeyhole size={18} />}
       />
 
       {passwordsDontMatch && (

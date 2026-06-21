@@ -1,5 +1,7 @@
-import { Mail, LockKeyhole } from 'lucide-react'
+import { Mail, LockKeyhole, Chrome } from 'lucide-react'
 import InputForm from '../../ui/InputForm'
+import ButtonNavWithIcon from '../../ui/ButtonNavWithIcon'
+import { Link } from 'react-router-dom'
 
 function FormLogin() {
   return (
@@ -20,10 +22,17 @@ function FormLogin() {
         id="password"
         type="password"
         placeholder="Digite sua senha"
-        icon = { <LockKeyhole fontSize="small" />}
+        icon = {<LockKeyhole fontSize="small" />}
       />
 
-      <button className='mb-4 bg-primary text-white py-2 rounded-md hover:bg-primary-dark transition'>Acessar Minha Conta</button>
+      <ButtonNavWithIcon
+        as='button'
+        type='submit'
+        variant='primary'
+        label='Acessar Minha Conta'
+        className='mb-4'
+        icon={<LockKeyhole size={18} />}
+      />
 
       <div className="flex items-center gap-4 text-text text-sm my-4">
         <div className="flex-1 h-px bg-gray-300"></div>
@@ -31,8 +40,14 @@ function FormLogin() {
         <div className="flex-1 h-px bg-gray-300"></div>
       </div>
 
-      <button className='bg-primary text-white py-2 rounded-md hover:bg-primary-dark transition'>Entrar com Google</button>
-      <p className='mt-4 text-sm text-center text-text'>Não tem uma conta? <a href='/cadastro' className='text-primary hover:underline'>Cadastre-se</a></p>
+      <ButtonNavWithIcon
+        as='button'
+        variant='outline'
+        icon={<Chrome size={18} />}
+        label='Entrar com Google'
+      />
+
+      <p className='mt-4 text-sm text-center text-text'>Não tem uma conta? <Link to='/cadastro' className='text-primary hover:underline'>Cadastre-se</Link></p>
     </form>
   )
 }

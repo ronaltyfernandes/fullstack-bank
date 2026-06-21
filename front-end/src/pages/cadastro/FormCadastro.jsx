@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import InputsForm from './inputsForm/InputsForm'
 import CheckBoxCadastro from '../../ui/CheckBoxCadastro'
-import { Chrome } from 'lucide-react'
+import ButtonNavWithIcon from '../../ui/ButtonNavWithIcon'
+import { Chrome, LockKeyhole, UserPlus2 } from 'lucide-react'
 
 function FormCadastro() {
   const [formData, setFormData] = useState({
@@ -29,14 +30,16 @@ function FormCadastro() {
       [name]: type === 'checkbox' ? checked : value,
     }))
   }
+
   return (
-    <form className='md:w-1/2 h-full mx-auto p-16 shadow-md rounded-e-xl flex flex-col justify-center'>
+    <form className='md:w-1/2 h-full mx-auto p-16 shadow-md rounded-s-xl flex flex-col justify-center'>
       <h1 className='text-2xl md:text-4xl font-semibold mb-1 text-text'>Cadastre-se</h1>
       <p className='mb-6 text-sm text-text'>Preencha os dados para criar sua conta</p>
 
       <InputsForm
         formData={formData}
         onChange={handleChange}
+        icon = {<LockKeyhole fontSize="small" />}
       />
 
       <CheckBoxCadastro
@@ -47,30 +50,15 @@ function FormCadastro() {
         className="mb-4"
       />
 
-      <button
-        type="submit"
+      <ButtonNavWithIcon
+        as='button'
+        type='submit'
+        variant='primary'
+        label='Criar Conta'
+        className='mb-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-md'
         disabled={!isFormValid}
-        className="
-          mb-4
-          w-full
-          bg-primary
-          text-white
-          font-medium
-          py-3
-          rounded-lg
-          shadow-md
-          hover:shadow-lg
-          hover:-translate-y-0.5
-          transition-all
-          duration-200
-          disabled:opacity-50
-          disabled:cursor-not-allowed
-          disabled:hover:translate-y-0
-          disabled:hover:shadow-md
-        "
-      >
-        Criar Conta
-      </button>
+        icon = {<UserPlus2 fontSize="small" />}
+      />
 
       <div className="flex items-center gap-4 text-text/60 text-sm my-6">
         <div className="flex-1 h-px bg-gray-200"></div>
@@ -78,37 +66,18 @@ function FormCadastro() {
         <div className="flex-1 h-px bg-gray-200"></div>
       </div>
 
-      <button
-        type="button"
-        className="
-          w-full
-          flex
-          items-center
-          justify-center
-          gap-2
-          py-3
-          border
-          border-gray-300
-          rounded-lg
-          bg-white
-          text-black
-          font-medium
-          shadow-sm
-          hover:shadow-lg
-          hover:-translate-y-0.5
-          transition-all
-          duration-200
-        "
-      >
-        <Chrome size={18} />
-        Entrar com Google
-      </button>
+      <ButtonNavWithIcon
+        as='button'
+        variant='outline'
+        icon={<Chrome size={18} />}
+        label='Entrar com Google'
+      />
 
       <p className='mt-4 text-sm text-center text-text'>Já tem uma conta? 
         <Link
-        to="/login"
-        className="text-primary hover:underline"
-        >
+          to="/login"
+          className="text-primary hover:underline"
+          >
           Acesse aqui
         </Link>
       </p>
