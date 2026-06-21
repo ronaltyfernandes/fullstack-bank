@@ -83,7 +83,7 @@ function Transacoes() {
   ];
 
   return (
-    <div className="p-6">
+    <div className="">
       <h1 className="text-3xl font-semibold mb-4 text-text sombra-azul">Transacoes</h1>
       <Table columns={columns} data={data} />
     </div>

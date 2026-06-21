@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
 import { ThemeSwitch } from "../../ui/ThemeSwitch";
 import NavLinkHeader from "../../ui/NavLink";
@@ -15,6 +15,7 @@ export function HeaderDesktop() {
         min-h-[75px]
         items-center
         px-8
+        max-h-[75px]
       "
     >
       <div className="sombra-azul">logo</div>
@@ -31,8 +32,8 @@ export function HeaderDesktop() {
       />
 
       <div className="space-x-2">
-        <button className="sombra-secundaria bg-primary text-white">Entrar</button>
-        <button className="sombra-azul-redonda">Cadastrar</button>
+        <Link to="/login" className="sombra-secundaria bg-primary text-white">Entrar</Link>
+        <Link to="/cadastro" className="sombra-azul-redonda">Cadastrar</Link>
       </div>
     </div>
   );
