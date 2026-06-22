@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Table } from "../../components/tabelas/Tabelas";
 import { getTransactions } from "../../services/api";
+import DateFilter from "../../ui/filtros/DateFilter";
 
 // todo - adicionar valores reais e ações de editar/excluir Transacoes
 function Transacoes() {
@@ -83,8 +84,11 @@ function Transacoes() {
   ];
 
   return (
-    <div className="">
-      <h1 className="text-3xl font-semibold mb-4 text-text sombra-azul">Transacoes</h1>
+    <div className="p-6">
+      <div className="flex justify-between">
+        <h1 className="text-4xl font-bold mb-4 text-text">Transações</h1>
+        <DateFilter/>
+      </div>
       <Table columns={columns} data={data} />
     </div>
   );

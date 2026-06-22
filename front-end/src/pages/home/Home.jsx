@@ -1,3 +1,4 @@
+import DateFilter from "../../ui/filtros/DateFilter";
 import CardsSalarios from "./CardsSalarios";
 import Graficos from "./Graficos";
 
@@ -5,10 +6,11 @@ import Graficos from "./Graficos";
 export function Home() {
   return (
     <div className="">
-      <div className="flex justify-between items-center py-1">
-        <h1 className="text-text text-4xl sombra-azul">Graficos</h1>
-        <div>
-          <h1 className="text-text text-xl sombra-azul">Filtro</h1>
+      <div className="flex justify-between items-center py-4">
+        <h1 className="text-text text-4xl font-bold">Gráficos</h1>
+        <div className="flex gap-2">
+          <DateFilter/>
+          <DateFilter/>
         </div>
       </div>
       <CardsSalarios />

@@ -1,4 +1,5 @@
 import { Table } from "../../components/tabelas/Tabelas";
+import DateFilter from "../../ui/filtros/DateFilter";
 
 // todo - adicionar valores reais e ações de editar/excluir categorias
 function Categorias() {
@@ -71,7 +72,10 @@ function Categorias() {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-semibold mb-4 text-text sombra-azul">Categorias</h1>
+      <div className="flex justify-between">
+        <h1 className="text-4xl font-bold mb-4 text-text">Categorias</h1>
+        <DateFilter/>
+      </div>
       <Table columns={columns} data={data} />
     </div>
   );

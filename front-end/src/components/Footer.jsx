@@ -1,10 +1,12 @@
+import Logo from "../ui/Logo";
+
 export function Footer() {
   return (
     <footer className="bg-bg-secondary text-slate-500">
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Logo / Descrição */}
-        <div>
-          <h2 className="text-xl font-semibold text-text text-center sm:text-left">SmartPay</h2>
+        <div className="flex flex-col items-center sm:items-start">
+          <Logo />
           <p className="mt-3 text-sm text-slate-500 text-center sm:text-left">
             Soluções financeiras inteligentes para simplificar sua gestão e acelerar seus resultados.
           </p>
@@ -52,7 +54,7 @@ export function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-slate-800 py-4 text-center text-sm text-slate-500">
-        © {new Date().getFullYear()} SmartPay Tecnologia Financeira S.A.  
+        © {new Date().getFullYear()} Finan Tecnologia Financeira S.A.  
         Todos os direitos reservados. <br />
 
         <span className="text-slate-500">

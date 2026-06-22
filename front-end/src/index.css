@@ -6,26 +6,26 @@
 
 @theme {
   /* Brand */
-  --color-primary: #2563EB;
+  --color-primary: #042C7F;
   --color-primary-light: #3B82F6;
   --color-primary-dark: #1E40AF;
 
-  --color-secondary: #16A34A;
+  --color-secondary: #0F766E;
 
   /* Status */
-  --color-success: #22C55E;
+  --color-success: #10B981;
   --color-warning: #F59E0B;
-  --color-error: #EF4444;
+  --color-error: #DC2626;
   --color-info: #0EA5E9;
 
   /* Layout */
-  --color-bg: #F1F5F9;
+  --color-bg: #EFF2FF;
   --color-bg-secondary: #FFFFFF;
-  --color-bg-tertiary: #F1F5F9;
+  --color-bg-tertiary: #E0E7FF;
   --color-text: #0F172A;
-  --color-text-muted: #64748B;
-  --color-border: #E2E8F0;
-  --color-purple: #4f46e5;
+  --color-text-muted: #475569;
+  --color-border: #CBD5E1;
+  --color-purple: #6366F1;
 }
 
 /* =========================

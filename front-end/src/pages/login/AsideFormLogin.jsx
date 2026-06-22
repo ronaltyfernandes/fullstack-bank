@@ -4,6 +4,7 @@ import ButtonNavWithIcon from '../../ui/ButtonNavWithIcon'
 import { ChartNoAxesCombinedIcon, Landmark, Tags, UserPlus2 } from "lucide-react";
 
 import AuthBackground from '../../ui/backGrondAsideForms'
+import Logo from '../../ui/Logo';
 
 function AsideFormLogin() {
   return(
@@ -22,7 +23,10 @@ function AsideFormLogin() {
       <AuthBackground />
 
       <div className="relative z-10 w-full">
-        <div className="rounded-full bg-white h-24 w-24 mb-8" />
+        <div className='rounded-full w-40 bg-white mb-5'>
+          <Logo/>
+        </div>
+
         <h2 className="text-4xl font-extrabold text-white mb-4">Crie seu Cadastro</h2>
         <p className="text-white/80">É rápido, fácil e gratuito.</p>
         <p className="text-white/80">Comece a organizar suas finanças.</p>

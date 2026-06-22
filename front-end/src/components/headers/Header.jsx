@@ -8,13 +8,12 @@ function Header() {
   );
 
   useEffect(() => {
+    //verifica tamanho da tela, ajusta se for mobile ou não
     const mq = window.matchMedia("(max-width: 767px)");
     const handle = (e) => setIsMobile(e.matches);
 
-    // set initial
     setIsMobile(mq.matches);
 
-    // add listener (modern + fallback)
     if (mq.addEventListener) mq.addEventListener("change", handle);
     else mq.addListener(handle);
 

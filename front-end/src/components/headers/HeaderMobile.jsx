@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useTheme } from "../../contexts/ThemeContext";
 import { ThemeSwitch } from "../../ui/ThemeSwitch";
 import NavLinkHeader from "../../ui/NavLink";
+import Logo from "../../ui/Logo";
 
 export function HeaderMobile() {
   const { theme, toggleTheme } = useTheme();
@@ -25,7 +26,7 @@ export function HeaderMobile() {
         px-8
       "
     >
-      <div className="sombra-azul">logo</div>
+      <Logo/>
 
       <div className="relative">
         <button

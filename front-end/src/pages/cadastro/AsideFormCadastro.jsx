@@ -2,6 +2,7 @@ import { ChartNoAxesCombinedIcon, Landmark, Tags, UserPlus2 } from "lucide-react
 import AuthBackground from "../../ui/backGrondAsideForms";
 import ListWithIcon from "../../ui/ListWithIcon";
 import ButtonNavWithIcon from "../../ui/ButtonNavWithIcon";
+import Logo from "../../ui/Logo";
 
 function AsideFormCadastro() {
   return (
@@ -10,7 +11,9 @@ function AsideFormCadastro() {
 
       <div className="relative z-10 h-full flex flex-col justify-center gap-8 p-16">
         <div className="w-full">
-          <div className="rounded-full bg-white h-24 w-24 mb-8" />
+          <div className='rounded-full w-40 bg-white mb-5'>
+            <Logo/>
+          </div>
           <h2 className="text-4xl font-extrabold text-white mb-4">
             Crie seu Cadastro
           </h2>

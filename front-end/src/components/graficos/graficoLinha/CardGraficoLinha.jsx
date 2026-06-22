@@ -1,4 +1,7 @@
+import { useState } from "react";
+import SelecaoDeFiltros from "../../../ui/filtros/SelecaoDeFiltros";
 import GraficoLinha from "./GraficoLinha";
+import { ChartArea } from "lucide-react";
 
 //todo pegar dados reais para os graficos
   const dados = [
@@ -16,15 +19,23 @@ import GraficoLinha from "./GraficoLinha";
     { tempo: "Dez", valor: -20 }
   ];
 
+const listaCategoriasDaApi = ['Alimentação', 'Transporte', 'Salário', 'Lazer'];
+
 function CardGraficoLinha() {
+  const [categoria, setCategoria] = useState('todas');
+  const [tipo, setTipo] = useState('todos');
+
   return (
     <div className="w-full mt-2 bg-bg-secondary rounded-md sm:px-4">
       <div className="flex flex-col lg:flex-row px-2 pt-4 justify-between mb-4 items-center gap-2 w-full">
-        <h2 className="text-text text-2xl sombra-azul font-medium">Receita/Despesa Por seção</h2>
-        <div className="flex gap-2">
-          <p className="text-text sombra-azul text-lg">Despesa/Receita</p>
-          <p className="text-text sombra-azul text-lg">Data</p>
-        </div>
+        <SelecaoDeFiltros
+          categorias={listaCategoriasDaApi}
+          categoriaSelecionada={categoria}
+          setCategoriaSelecionada={setCategoria}
+          tipoSelecionado={tipo}
+          setTipoSelecionado={setTipo}
+          Icone={ChartArea}
+        />
       </div>
       <GraficoLinha dados={dados}/>
     </div>
