@@ -6,19 +6,19 @@ import Logo from "../../ui/Logo";
 
 function AsideFormCadastro() {
   return (
-    <aside className="w-1/2 relative overflow-hidden">
+    <aside className="w-full md:w-1/2 relative overflow-hidden">
       <AuthBackground />
 
-      <div className="relative z-10 h-full flex flex-col justify-center gap-8 p-16">
+      <div className="relative z-10 h-full flex flex-col justify-center gap-6 p-8 md:p-16">
         <div className="w-full">
-          <div className='rounded-full w-40 bg-white mb-5'>
-            <Logo/>
+          <div className='rounded-full w-28 md:w-40 bg-white mb-4'>
+            <Logo />
           </div>
-          <h2 className="text-4xl font-extrabold text-white mb-4">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-2 md:mb-4">
             Crie seu Cadastro
           </h2>
-          <p className="text-white/80">É rápido, fácil e gratuito.</p>
-          <p className="text-white/80">
+          <p className="text-white/80 text-sm md:text-base">É rápido, fácil e gratuito.</p>
+          <p className="text-white/80 text-sm md:text-base">
             Comece a organizar suas finanças.
           </p>
         </div>

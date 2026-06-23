@@ -12,24 +12,24 @@ function AsideFormLogin() {
       className="
         relative
         overflow-hidden
-        w-1/2
+        w-full md:w-1/2
         flex
         flex-col
         justify-center
-        gap-8
-        p-16
+        gap-6
+        p-8 md:p-16
       "
     >
       <AuthBackground />
 
       <div className="relative z-10 w-full">
-        <div className='rounded-full w-40 bg-white mb-5'>
-          <Logo/>
+        <div className='rounded-full w-28 md:w-40 bg-white mb-4'>
+          <Logo />
         </div>
 
-        <h2 className="text-4xl font-extrabold text-white mb-4">Crie seu Cadastro</h2>
-        <p className="text-white/80">É rápido, fácil e gratuito.</p>
-        <p className="text-white/80">Comece a organizar suas finanças.</p>
+        <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-2 md:mb-4">Crie seu Cadastro</h2>
+        <p className="text-white/80 text-sm md:text-base">É rápido, fácil e gratuito.</p>
+        <p className="text-white/80 text-sm md:text-base">Comece a organizar suas finanças.</p>
       </div>
 
       <div className="relative z-10 flex flex-col gap-4 w-full">

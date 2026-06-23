@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function FormLogin() {
   return (
-    <form className='md:w-1/2 h-full mx-auto p-16 shadow-md rounded-e-xl flex flex-col justify-center'>
+    <form className='w-full md:w-1/2 h-full mx-auto p-8 md:p-16 shadow-md rounded-b-xl md:rounded-e-xl flex flex-col justify-center'>
       <h1 className='text-2xl md:text-4xl font-semibold mb-1 text-text'>Acesse sua conta</h1>
       <p className='mb-6 text-sm text-text'>Digite seus dados para continuar</p>
 
