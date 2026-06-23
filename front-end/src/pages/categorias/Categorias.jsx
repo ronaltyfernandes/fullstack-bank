@@ -72,9 +72,11 @@ function Categorias() {
 
   return (
     <div className="p-6">
-      <div className="flex justify-between">
-        <h1 className="text-4xl font-bold mb-4 text-text">Categorias</h1>
-        <DateFilter/>
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+        <h1 className="text-4xl font-bold lg:mb-4 mb-0 text-text">Categorias</h1>
+        <div className="flex flex-row gap-2 flex-wrap justify-end w-full md:w-auto">
+          <DateFilter/>
+        </div>
       </div>
       <Table columns={columns} data={data} />
     </div>

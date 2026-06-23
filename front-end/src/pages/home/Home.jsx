@@ -6,12 +6,14 @@ import Graficos from "./Graficos";
 export function Home() {
   return (
     <div className="">
-      <div className="flex justify-between items-center py-4">
-        <h1 className="text-text text-4xl font-bold">Gráficos</h1>
-        <div className="flex gap-2">
-          <DateFilter/>
-          <DateFilter/>
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 py-4">
+        <h1 className="text-text text-3xl md:text-4xl font-bold">Gráficos</h1>
+
+        <div className="flex flex-row gap-2 flex-wrap justify-end w-full md:w-auto">
+          <DateFilter />
+          <DateFilter />
         </div>
+
       </div>
       <CardsSalarios />
       <Graficos />

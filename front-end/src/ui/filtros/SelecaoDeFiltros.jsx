@@ -24,7 +24,7 @@ export default function SelecaoDeFiltros({
       </div>
       
       {/* Container dos Filtros */}
-      <div className="flex flex-col md:flex-row flex-wrap items-stretch sm:items-center gap-3 w-full lg:w-auto justify-end">
+      <div className="flex flex-col md:flex-row flex-wrap items-stretch sm:items-center gap-2 w-full lg:w-auto justify-end">
         <FiltroCategorias 
           categoriaSelecionada={categoriaSelecionada} 
           setCategoriaSelecionada={setCategoriaSelecionada} 

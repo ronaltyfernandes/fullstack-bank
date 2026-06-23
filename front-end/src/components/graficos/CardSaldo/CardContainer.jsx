@@ -1,4 +1,4 @@
-import LinhasDecorativasGraficos from "../../../ui/SVG/linhasDecorativasGraficos";
+import LinhasDecorativasGraficos from "../../../ui/LinhasDecorativasGraficos";
 
 function CardContainer({ children, variant = "primary", cor }) {
   const gradientVariants = {

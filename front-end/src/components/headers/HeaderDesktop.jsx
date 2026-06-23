@@ -1,6 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import { useTheme } from "../../contexts/ThemeContext";
-import { ThemeSwitch } from "../../ui/ThemeSwitch";
+import { ThemeSwitch } from "../../ui/Inputs/ThemeSwitch";
 import NavLinkHeader from "../../ui/NavLink";
 import Logo from "../../ui/Logo";
 

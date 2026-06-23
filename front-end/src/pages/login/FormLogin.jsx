@@ -1,6 +1,6 @@
 import { Mail, LockKeyhole, Chrome } from 'lucide-react'
-import InputForm from '../../ui/InputForm'
-import ButtonNavWithIcon from '../../ui/ButtonNavWithIcon'
+import InputForm from '../../ui/Inputs/InputForm'
+import ButtonNavWithIcon from '../../ui/Buttons/ButtonNavWithIcon'
 import { Link } from 'react-router-dom'
 
 function FormLogin() {

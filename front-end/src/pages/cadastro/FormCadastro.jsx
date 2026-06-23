@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import InputsForm from './inputsForm/InputsForm'
-import CheckBoxCadastro from '../../ui/CheckBoxCadastro'
-import ButtonNavWithIcon from '../../ui/ButtonNavWithIcon'
+import CheckBoxCadastro from '../../ui/Inputs/CheckBoxCadastro'
+import ButtonNavWithIcon from '../../ui/Buttons/ButtonNavWithIcon'
 import { Chrome, LockKeyhole, UserPlus2 } from 'lucide-react'
 
 function FormCadastro() {

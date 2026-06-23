@@ -1,6 +1,6 @@
 import React from 'react'
 import ListWithIcon from '../../ui/ListWithIcon'
-import ButtonNavWithIcon from '../../ui/ButtonNavWithIcon'
+import ButtonNavWithIcon from '../../ui/Buttons/ButtonNavWithIcon'
 import { ChartNoAxesCombinedIcon, Landmark, Tags, UserPlus2 } from "lucide-react";
 
 import AuthBackground from '../../ui/backGrondAsideForms'

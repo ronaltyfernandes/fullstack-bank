@@ -1,6 +1,6 @@
 import React from 'react'
 import { Mail, LockKeyhole, User, Check } from 'lucide-react'
-import InputForm from '../../../ui/InputForm'
+import InputForm from '../../../ui/Inputs/InputForm'
 
 function InputsForm({ formData, onChange }) {
   const passwordsDontMatch =

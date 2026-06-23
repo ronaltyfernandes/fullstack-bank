@@ -2,9 +2,9 @@ import { CalendarDays } from 'lucide-react';
 
 export default function DateFilter({ selectedDate, onDateChange }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-full md:w-auto">
       {/* Container do Input */}
-      <div className="relative flex items-center max-w-xs">
+      <div className="relative flex items-center max-w-full md:max-w-xs">
         <CalendarDays className="absolute left-3 text-blue-500 w-5 h-5 pointer-events-none z-10" />
         
         {/* Input com classes adicionais para esconder o ícone nativo */}
