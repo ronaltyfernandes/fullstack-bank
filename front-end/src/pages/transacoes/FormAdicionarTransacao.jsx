@@ -1,12 +1,12 @@
 import React from 'react'
-import InputForm from '../Inputs/InputForm';
-import SelectInput from '../Inputs/SelectInput';
-import StatusPagoPendent from '../Inputs/StatusPagoPendent';
+import InputForm from '../../ui/Inputs/InputForm';
+import SelectInput from '../../ui/Inputs/SelectInput';
+import StatusPagoPendent from './StatusPagoPendent';
 
 function FormAdicionarTransacao({
   handleSubmit,
   handleChange,
-  formData,
+  formState,
   onCancel,
   categories = ["Utilidades", "Alimentação", "Lazer"],
   bankAccounts = ["Conta Corrente", "Poupança"],
@@ -23,7 +23,7 @@ function FormAdicionarTransacao({
           id="name"
           name="name"
           placeholder="Ex: Conta de Luz"
-          value={formData.name || ""}
+          value={formState.name || ""}
           onChange={handleChange}
           required
         />
@@ -32,7 +32,7 @@ function FormAdicionarTransacao({
       {/* Status de Pagamento */}
       <StatusPagoPendent 
         onChange={handleChange} 
-        value={formData.paymentStatus || "Pendente"}
+        value={formState.paymentStatus || "Pendente"}
       />
 
       {/* Valor */}
@@ -44,7 +44,7 @@ function FormAdicionarTransacao({
           type="number"
           step="0.01"
           placeholder="0,00"
-          value={formData.value || ""}
+          value={formState.value || ""}
           onChange={handleChange}
           required
         />
@@ -57,7 +57,7 @@ function FormAdicionarTransacao({
           id="date"
           name="date"
           type="date"
-          value={formData.date || ""}
+          value={formState.date || ""}
           onChange={handleChange}
           required
         />
@@ -68,7 +68,7 @@ function FormAdicionarTransacao({
         <SelectInput
           label="Categoria *"
           name="category"
-          value={formData.category || ""}
+          value={formState.category || ""}
           onChange={handleChange}
           required
           list={categories}
@@ -80,7 +80,7 @@ function FormAdicionarTransacao({
         <SelectInput
           label="Conta Bancária *"
           name="bankAccount"
-          value={formData.bankAccount || ""}
+          value={formState.bankAccount || ""}
           onChange={handleChange}
           required
           list={bankAccounts}
@@ -92,7 +92,7 @@ function FormAdicionarTransacao({
         <SelectInput
           label="Forma de Pagamento"
           name="paymentMethod"
-          value={formData.paymentMethod || ""}
+          value={formState.paymentMethod || ""}
           onChange={handleChange}
           list={paymentMethods}
         />
@@ -103,7 +103,7 @@ function FormAdicionarTransacao({
         <label className="block text-sm font-medium text-text mb-1">Descrição</label>
         <textarea
           name="description"
-          value={formData.description || ""}
+          value={formState.description || ""}
           onChange={handleChange}
           placeholder="Fatura mensal de energia..."
           className="w-full py-2 border text-text border-text/10 rounded-md focus:outline-none focus:ring-2 focus:ring-primary pl-3 pr-3 min-h-20 max-h-[140px] bg-transparent"

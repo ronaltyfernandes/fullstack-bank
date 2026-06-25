@@ -12,13 +12,11 @@ export function Table({
   return (
     <div className="overflow-x-auto rounded-xl border border-text/10">
       <table className="min-w-full">
+        {/* headers */}
         <thead className="bg-primary">
           <tr>
             {columns.map((col, index) => (
-              <th
-                key={index}
-                className="px-4 py-3 text-left text-md font-semibold text-white"
-              >
+              <th key={index} className="px-4 py-3 text-left text-md font-semibold text-white">
                 {col.header}
               </th>
             ))}
@@ -30,7 +28,7 @@ export function Table({
             )}
           </tr>
         </thead>
-
+        {/* Linhas */}
         <tbody>
           {data.map((row, rowIndex) => (
             <tr
@@ -51,7 +49,7 @@ export function Table({
                   />
                 </td>
               ))}
-
+              {/* ações, delete e update */}
               {showActions && (
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-2">
