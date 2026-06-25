@@ -37,7 +37,7 @@ export default function GraficoBarras({
         series={[
           {
             data: positivos,
-            color: 'var(--color-success)',
+            color: 'var(--color-primary-light)',
             stack: 'total',
             barLabel: 'value',
             valueFormatter: (v) => (v == null ? null : v),

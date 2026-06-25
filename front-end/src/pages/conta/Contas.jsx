@@ -1,4 +1,5 @@
 import { Table } from "../../components/tabelas/Tabelas";
+import DateFilter from "../../ui/filtros/DateFilter";
 
   const columns = [
     { header: "Nome", accessor: "nome" },
@@ -22,7 +23,14 @@ import { Table } from "../../components/tabelas/Tabelas";
 function Contas() {
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-semibold mb-4 text-text sombra-azul">Contas Bancárias</h1>
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+        <h1 className="text-4xl font-bold mb-4 text-text">Contas Bancárias</h1>
+
+        <div className="flex flex-row gap-2 flex-wrap justify-end w-full md:w-auto">
+          <DateFilter/>
+        </div>
+      </div>
+
       <Table columns={columns} data={data} />
     </div>
   );

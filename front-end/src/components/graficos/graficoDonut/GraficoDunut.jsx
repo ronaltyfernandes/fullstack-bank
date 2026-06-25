@@ -1,5 +1,5 @@
 import { PieChart, pieArcLabelClasses, pieArcClasses } from '@mui/x-charts';
-import geradorCoresMuiCharts from '../../utils/geradorCoresMuiCharts';
+import geradorCoresMuiCharts from '../../../utils/geradorCoresMuiCharts';
 
 function GraficoDunut({ data = [], innerRadius = 40, outerRadius = 100, width = '100%', height = 200, arcLabel = 'value', className = 'text-white flex items-center md:px-8 px-2' }) {
   const { dataWithColors, legendSx } = geradorCoresMuiCharts(data);

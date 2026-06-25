@@ -1,4 +1,4 @@
-import CardSaldo from "../../components/graficos/CardSaldo"
+import CardSaldo from "../../components/graficos/CardSaldo/CardSaldo"
 
 function CardsSalarios() {
   return (

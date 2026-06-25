@@ -1,8 +1,9 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useTheme } from "../../contexts/ThemeContext";
-import { ThemeSwitch } from "../../ui/ThemeSwitch";
+import { ThemeSwitch } from "../../ui/Inputs/ThemeSwitch";
 import NavLinkHeader from "../../ui/NavLink";
+import Logo from "../../ui/Logo";
 
 export function HeaderMobile() {
   const { theme, toggleTheme } = useTheme();
@@ -25,7 +26,7 @@ export function HeaderMobile() {
         px-8
       "
     >
-      <div className="sombra-azul">logo</div>
+      <Logo/>
 
       <div className="relative">
         <button
@@ -75,17 +76,13 @@ export function HeaderMobile() {
 
             {/* ações */}
             <div className="mt-3 space-y-2">
-              <button
-                className="sombra-secundaria w-full py-4 rounded-xl bg-primary text-white"
-              >
+              <Link to="/login" className="sombra-secundaria w-full py-4 rounded-md bg-primary text-white">
                 Entrar
-              </button>
+              </Link>
 
-              <button
-                className="sombra-azul-redonda w-full py-4 rounded-xl"
-              >
+              <Link to="/cadastro" className="sombra-azul-redonda w-full py-4 rounded-md">
                 Cadastrar
-              </button>
+              </Link>
             </div>
           </nav>
         </div>
