@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Modal from '../../ui/Modais/Modal';
 import FormAdicionarCategoria from './FormAdicionarCategoria';
 

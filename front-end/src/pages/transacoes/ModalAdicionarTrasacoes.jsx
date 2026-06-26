@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import FormAdicionarTransacao from './FormAdicionarTransacao';
 import Modal from '../../ui/Modais/Modal';
 

@@ -91,7 +91,7 @@ function Transacoes() {
   useEffect(() => {
     const fetchTransactions = async () => {
       // const transactions = await getTransactions();
-      console.log(transactions.data);
+      // console.log(transactions.data);
     };
     fetchTransactions();
   }, []);

@@ -1,13 +1,13 @@
 import React from 'react';
 
-function InputSelectReceitaDespesa({ value, onChange }) {
-  const isDespesa = value === 'EXPENSE';
+function InputSelectStatusConta({ value, onChange }) {
+  const isDespesa = value === 'Ativa';
 
   const toggleStatus = () => {
     onChange({
       target: {
-        name: 'incomeExpensive',
-        value: isDespesa ? 'INCOME' : 'EXPENSE',
+        name: 'status',
+        value: isDespesa ? 'Inativa' : 'Ativa',
       },
     });
   };
@@ -22,7 +22,7 @@ function InputSelectReceitaDespesa({ value, onChange }) {
           type="button"
           onClick={toggleStatus}
           className={`w-12 h-6 flex items-center rounded-full p-1 transition-colors duration-300 focus:outline-none ${
-            isDespesa ? 'bg-red-500' : ' bg-green-500'
+            isDespesa ? 'bg-green-500' : ' bg-red-500'
           }`}
         >
           {/* A Bolinha */}
@@ -34,7 +34,7 @@ function InputSelectReceitaDespesa({ value, onChange }) {
         </button>
 
         {/* Texto Dinâmico */}
-        <span className={`text-sm font-medium ${isDespesa ? 'text-red-500 font-semibold' : 'text-green-500/60'}`}>
+        <span className={`text-sm font-medium ${isDespesa ? 'text-green-500 font-semibold' : 'text-red-500/60'}`}>
           {value}
         </span>
       </div>
@@ -42,4 +42,4 @@ function InputSelectReceitaDespesa({ value, onChange }) {
   );
 }
 
-export default InputSelectReceitaDespesa;
+export default InputSelectStatusConta;

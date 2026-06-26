@@ -1,16 +1,16 @@
 import React from "react";
 import Modal from '../../ui/Modais/Modal';
-import FormAdicionarCategoria from "./FormAdicionarCategoria";
+import FormAdicionarConta from "./FormAdicionarConta";
 
-function ModalEditarCategoria({ openModal, setOpenModal, formState, handleChange, handleSubmit}) {
+function ModalEditarConta({ openModal, setOpenModal, formState, handleChange, handleSubmit}) {
   return (
     <Modal
       open={openModal}
       onClose={() => setOpenModal(false)}
-      title="Editar Categoria"
+      title="Editar Conta"
       maxWidth="max-w-2xl"
     >
-      <FormAdicionarCategoria
+      <FormAdicionarConta
         formState={formState}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
@@ -21,4 +21,4 @@ function ModalEditarCategoria({ openModal, setOpenModal, formState, handleChange
   );
 }
 
-export default ModalEditarCategoria;
+export default ModalEditarConta;

@@ -5,7 +5,7 @@ import CardContainer from "./CardContainer";
 import CardBody from "./CardBody";
 
 function CardSaldo(props) {
-  const { nome, saldo, valorAnterior, variant = "saldo", cor, cardIcon = "saldo" } = props;
+  const { nome, saldo, valorAnterior, variant = "saldo", cor } = props;
 
   const vSaldo = parseCurrency(saldo);
   const vAnterior = parseCurrency(valorAnterior);
@@ -39,9 +39,6 @@ function CardSaldo(props) {
     despesas:"bg-gradient-to-br from-red-500 via-red-600 to-red-800",
     receitas:"bg-gradient-to-br from-emerald-400 via-green-500 to-green-700",
   };
-
-  const containerClass =
-    cor ?? gradientVariants[variant] ?? gradientVariants.primary;
 
   return (
     <CardContainer variant={variant} cor={cor}>

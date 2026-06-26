@@ -73,14 +73,21 @@ export function HeaderMobile() {
               <span className="text-sm opacity-80">Tema</span>
               <ThemeSwitch toggleTheme={toggleTheme} isDark={theme === "dark"} />
             </div>
-
-            {/* ações */}
-            <div className="mt-3 space-y-2">
-              <Link to="/login" className="sombra-secundaria w-full py-4 rounded-md bg-primary text-white">
+            {/* Ações */}
+            <div className="mt-4 flex flex-col gap-2">
+              <Link
+                to="/login"
+                className="flex items-center justify-center w-full py-2 rounded-xl
+                 bg-primary text-white font-semibold shadow-md hover:bg-primary/90 hover:shadow-lg transition-all duration-300"
+              >
                 Entrar
               </Link>
 
-              <Link to="/cadastro" className="sombra-azul-redonda w-full py-4 rounded-md">
+              <Link
+                to="/cadastro"
+                className="flex items-center justify-center w-full py-2 rounded-xl border
+                 border-primary text-primary font-semibold bg-white hover:bg-primary hover:text-white transition-all duration-300"
+              >
                 Cadastrar
               </Link>
             </div>

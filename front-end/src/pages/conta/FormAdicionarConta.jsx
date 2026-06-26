@@ -1,9 +1,9 @@
 import React from 'react'
 import InputForm from '../../ui/Inputs/InputForm';
 import SelectInput from '../../ui/Inputs/SelectInput';
-import InputSelectReceitaDespesa from './InputSelectReceitaDespesa';
+import InputSelectStatusConta from './InputSelectStatusConta';
 
-function FormAdicionarCategoria({
+function FormAdicionarConta({
   handleSubmit,
   handleChange,
   formState,
@@ -12,7 +12,6 @@ function FormAdicionarCategoria({
 }) {
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2">
-      
       {/* Nome */}
       <div className="col-span-2">
         <InputForm
@@ -26,11 +25,9 @@ function FormAdicionarCategoria({
         />
       </div>
 
-      {/* Status de despesa receita */}
-      <InputSelectReceitaDespesa 
-        onChange={handleChange} 
-        value={formState.incomeExpensive || "EXPENSE"}
-      />
+      {/* STATUS */}
+      <InputSelectStatusConta onChange={handleChange} value={formState.status}/>
+
 
       {/* Descrição */}
       <div className="col-span-2">
@@ -67,4 +64,4 @@ function FormAdicionarCategoria({
   )
 }
 
-export default FormAdicionarCategoria;
+export default FormAdicionarConta;
