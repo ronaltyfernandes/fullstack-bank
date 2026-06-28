@@ -8,6 +8,7 @@ import { SelectUserDto } from './dto/select-user.dto';
 import { IPaginationOptions, paginate, Pagination } from 'nestjs-typeorm-paginate';
 import applyFilters from '../util/aplyFilters.filter';
 import { UpdateBankAccountDto } from '../bank-account/dto/update-bank-account.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -34,15 +35,15 @@ export class UserService {
   }
 
   async findByEmail(email: string) {
-    const responseUser = await this.repository.findOne({
-      where: { email },
-      select: ['id', 'email', 'password', 'isActive', 'bankAccount', 'category'],
-    });
-    return responseUser;
+    return this.repository
+      .createQueryBuilder('user')
+      .where('user.email = :email', { email })
+      .getOne();
   }
 
   async create(createUserDto: CreateUserDto) {
-    return this.repository.save({ ...createUserDto });
+    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
+    return this.repository.save({ ...createUserDto, password: hashedPassword });
   }
 
   async update(id: number, updateBankAccountDto: UpdateBankAccountDto) {

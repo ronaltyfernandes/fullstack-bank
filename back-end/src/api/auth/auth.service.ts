@@ -1,8 +1,7 @@
-// auth.service.ts
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { UserService } from 'src/api/user/user.service';
+import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
@@ -13,8 +12,16 @@ export class AuthService {
 
   async validateUser(email: string, password: string) {
     const user = await this.usersService.findByEmail(email);
-    // eslint-disable-next-line
+    if (!user) {
+      throw new UnauthorizedException('Usuário não encontrado');
+    }
+    if (!user.password) {
+      throw new UnauthorizedException('Senha não encontrada no banco');
+     }
+    const isMatch = await bcrypt.compare(password, user.password);
+    console.log('bcrypt.compare resultado:', isMatch);
     if (user && (await bcrypt.compare(password, user.password))) {
+      console.log("entrou aqui ememo")
       // Remove o campo password do retorno
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password: _password, ...result } = user;
@@ -24,9 +31,10 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { username: user.email, sub: user.id };
+    const token = this.jwtService.sign({ username: user.email, sub: user.id });
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: token,
+      token,
     };
   }
 }
