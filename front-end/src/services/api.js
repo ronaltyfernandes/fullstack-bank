@@ -22,6 +22,10 @@ export async function login(credentials) {
   return fullStackApi.post("/auth/login", credentials);
 }
 
+export async function getMe() {
+  return fullStackApi.get('/auth/me');
+}
+
 // App
 export async function getRoot() {
   return fullStackApi.get("/");

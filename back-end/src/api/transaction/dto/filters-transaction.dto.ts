@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BankAccount } from 'src/api/bank-account/bank-account.entity';
-import { Category } from 'src/api/category/category.entity';
-import { User } from 'src/api/user/user.entity';
-import { IncomeExpenseType, PaymentMethodType, PaymentStatusType } from 'src/types/Enums';
+import { IncomeExpenseType, PaymentMethodType, PaymentStatusType } from '../../../types/Enums';
+import { Category } from '../../category/category.entity';
+import { BankAccount } from '../../bank-account/bank-account.entity';
+import { User } from '../../user/user.entity';
 
 export class FilterTransactionDto {
   @ApiProperty({ required: false, example: 'Food' })

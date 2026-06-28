@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, Unique } from 'typeor
 import { BaseEntity } from '../util/base/baseEntity.entity';
 import { Transaction } from '../transaction/transaction.entity';
 import { User } from '../user/user.entity';
-import { IncomeExpenseType } from 'src/types/Enums';
+import { IncomeExpenseType } from '../../types/Enums';
 
 @Unique(['name', 'user'])
 @Entity()

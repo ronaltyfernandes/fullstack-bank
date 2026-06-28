@@ -24,17 +24,28 @@ export class CategoryService {
     paginationOptions: IPaginationOptions,
     filter: FilterCategoryDto,
   ): Promise<Pagination<SelectCategoryDto>> {
-    const query = this.repository.createQueryBuilder('category').orderBy('category.id', 'DESC');
-    applyFilters(query, filter, 'category');
+    const query = this.repository
+      .createQueryBuilder('category')
+      .leftJoinAndSelect('category.user', 'user')
+      .orderBy('category.id', 'DESC');
+
+    if (filter.userId) {
+      query.andWhere('user.id = :userId', { userId: filter.userId });
+    }
+
+    // remove userId antes de passar pro applyFilters genérico
+    const { userId, ...restFilter } = filter;
+    applyFilters(query, restFilter, 'category');
 
     const results = await paginate<Category>(query, paginationOptions);
-    const items = results.items.map((user) => new SelectCategoryDto(user));
+    const items = results.items.map((cat) => new SelectCategoryDto(cat));
 
     return new Pagination<SelectCategoryDto>(items, results.meta);
   }
 
   async findOne(id: number) {
     return this.repository.findOneBy({ id });
+    
   }
 
   async update(id: number, updateCategoryDto: UpdateCategoryDto) {

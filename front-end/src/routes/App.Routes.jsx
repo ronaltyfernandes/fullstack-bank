@@ -12,12 +12,12 @@ export function AppRoutes() {
   return (
     <Routes>
       {/* Rotas públicas */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/cadastro" element={<Cadastro />} />
+      <Route element={<DefaultLayout />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
 
       {/* Rotas protegidas */}
-      <Route element={<ProtectedRoute />}>
-        <Route element={<DefaultLayout />}>
+        <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Home />} />
           <Route path="/contas" element={<Contas />} />
           <Route path="/categorias" element={<Categorias />} />

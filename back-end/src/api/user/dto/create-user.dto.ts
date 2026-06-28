@@ -1,19 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseDto } from 'src/api/util/base/dto/baseDto';
+import { BaseDto } from '../../util/base/dto/baseDto';
 
 export class CreateUserDto extends BaseDto {
   @ApiProperty()
-  name: string;
+  name!: string;
 
   @ApiProperty()
-  password: string;
+  password!: string;
 
   @ApiProperty()
-  email: string;
+  email!: string;
 
   @ApiProperty()
   foto?: Buffer;
 
   @ApiProperty()
-  isActive: boolean;
+  isActive!: boolean;
 }
