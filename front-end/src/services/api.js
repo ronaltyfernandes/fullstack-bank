@@ -6,20 +6,47 @@ export const fullStackApi = axios.create({
   baseURL: url,
 });
 
+const ROUTES_WITHOUT_USER_FILTER = ['/auth/me', '/', '/status'];
+
+// Interceptor de request — injeta token e userId
 fullStackApi.interceptors.request.use((config) => {
-  const token = localStorage.getItem('finan_login_token')
+  const token = localStorage.getItem('finan_login_token');
+  const userId = localStorage.getItem('finan_user_id');
+
   if (token) {
-    config.headers = {
-      ...config.headers,
-      Authorization: `Bearer ${token}`,
-    }
+    config.headers.Authorization = `Bearer ${token}`;
   }
-  return config
-})
+
+  if (userId && config.method === 'get' && !ROUTES_WITHOUT_USER_FILTER.includes(config.url)) {
+    config.params = {
+      userId,
+      ...config.params,
+    };
+  }
+
+  return config;
+});
+
+// Interceptor de response — trata token expirado/inválido globalmente
+fullStackApi.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('finan_login_token');
+      localStorage.removeItem('finan_user_id');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
 
 // Auth
 export async function login(credentials) {
-  return fullStackApi.post("/auth/login", credentials);
+  const response = await fullStackApi.post("/auth/login", credentials);
+  localStorage.setItem('finan_user_id', response.data.user_id);
+  localStorage.setItem('finan_login_token', response.data.access_token);
+
+  return response;
 }
 
 export async function getMe() {
@@ -98,7 +125,6 @@ export async function deleteTransacion(id) {
   return fullStackApi.delete(`/transaction/${id}`);
 }
 
-
 // Categorys
 export async function getCategories() {
   return fullStackApi.get("/category");
@@ -119,5 +145,3 @@ export async function createCategory(category) {
 export async function deleteCategory(id) {
   return fullStackApi.delete(`/category/${id}`);
 }
-
-

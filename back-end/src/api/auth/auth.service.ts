@@ -19,9 +19,7 @@ export class AuthService {
       throw new UnauthorizedException('Senha não encontrada no banco');
      }
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log('bcrypt.compare resultado:', isMatch);
     if (user && (await bcrypt.compare(password, user.password))) {
-      console.log("entrou aqui ememo")
       // Remove o campo password do retorno
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password: _password, ...result } = user;
@@ -34,7 +32,7 @@ export class AuthService {
     const token = this.jwtService.sign({ username: user.email, sub: user.id });
     return {
       access_token: token,
-      token,
+      user_id: user.id,
     };
   }
 }

@@ -14,5 +14,8 @@ export class CreateCategoryDto extends BaseDto {
   user!: User;
 
   @ApiProperty()
+  description!: string;
+
+  @ApiProperty()
   incomeExpensive!: IncomeExpenseType;
 }

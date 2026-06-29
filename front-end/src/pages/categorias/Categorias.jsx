@@ -26,18 +26,14 @@ function Categorias() {
   const [selected, setSelected] = useState(null);
   const [formState, setFormState] = useState(emptyForm);
   const [categories, setCategories] = useState([]);
-  const [userId, setUserId] = useState(null);
+  const userId = localStorage.getItem('finan_user_id');
   const [loading, setLoading] = useState(true);
 
-  // Busca o usuário logado e depois as categorias dele
   useEffect(() => {
     const init = async () => {
       try {
-        const { data: user } = await getMe();
-        setUserId(user.id);
-
-        const { data } = await getCategories({ userId: user.id });
-        // ajuste conforme o formato de retorno da sua API (paginado ou array direto)
+        const { data } = await getCategories();
+        console.log(data)
         setCategories(data.items ?? data);
       } catch (error) {
         console.error('Erro ao carregar categorias:', error);
@@ -90,14 +86,23 @@ function Categorias() {
     e.preventDefault();
     try {
       if (formState.id) {
-        await updateCategory(formState.id, formState);
+        await updateCategory(formState.id, {
+          name: formState.name,
+          description: formState.description,
+          incomeExpensive: formState.incomeExpensive,
+        });
       } else {
-        await createCategory({ ...formState, userId });
+        await createCategory({
+          name: formState.name,
+          description: formState.description,
+          incomeExpensive: formState.incomeExpensive,
+          user: { id: userId },
+        });
       }
       await refreshCategories();
       closeModal();
     } catch (error) {
-      console.error(error);
+      console.error('Erro ao salvar categoria:', error);
     }
   };
 
