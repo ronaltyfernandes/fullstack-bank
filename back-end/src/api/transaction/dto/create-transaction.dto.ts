@@ -1,31 +1,31 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BankAccount } from 'src/api/bank-account/bank-account.entity';
-import { Category } from 'src/api/category/category.entity';
-import { BaseDto } from 'src/api/util/base/dto/baseDto';
-import { PaymentMethodType, PaymentStatusType } from 'src/types/Enums';
+import { BaseDto } from '../../util/base/dto/baseDto';
+import { PaymentMethodType, PaymentStatusType } from '../../../types/Enums';
+import { Category } from '../../category/category.entity';
+import { BankAccount } from '../../bank-account/bank-account.entity';
 
 export class CreateTransactionDto extends BaseDto {
   @ApiProperty()
-  name: string;
+  name!: string;
 
   @ApiProperty()
-  description: string;
+  description!: string;
 
   @ApiProperty()
-  value: number;
+  value!: number;
 
   @ApiProperty()
-  date: Date;
+  date!: Date;
 
   @ApiProperty()
-  paymentStatus: PaymentStatusType;
+  paymentStatus!: PaymentStatusType;
 
   @ApiProperty()
-  paymentMethod: PaymentMethodType;
+  paymentMethod!: PaymentMethodType;
 
   @ApiProperty()
-  category: Category;
+  category!: Category;
 
   @ApiProperty()
-  bankAccount: BankAccount;
+  bankAccount!: BankAccount;
 }

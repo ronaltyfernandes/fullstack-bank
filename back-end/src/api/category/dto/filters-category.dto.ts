@@ -1,25 +1,20 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from 'src/api/user/user.entity';
-import { IncomeExpenseType } from 'src/types/Enums';
+import { IncomeExpenseType } from '../../../types/Enums';
+import { User } from '../../user/user.entity';
 
 export class FilterCategoryDto {
-  @ApiProperty({
-    name: 'description',
-    required: false,
-    example: 'description of an expense or income category',
-  })
+  @ApiProperty({ name: 'description', required: false })
   description?: string;
 
-  @ApiProperty({
-    name: 'name',
-    required: false,
-    example: 'Food',
-  })
+  @ApiProperty({ name: 'name', required: false })
   name?: string;
 
-  @ApiProperty({ name: 'incomeExpensive', required: false, example: 'INCOME' })
+  @ApiProperty({ name: 'incomeExpensive', required: false })
   incomeExpensive?: IncomeExpenseType;
 
-  @ApiProperty({ name: 'incomeExpensive', required: false, example: 'INCOME' })
+  @ApiProperty({ name: 'user', required: false })
   user?: User;
+
+  @ApiProperty({ name: 'userId', required: false, example: 1 })
+  userId?: number;
 }

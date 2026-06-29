@@ -1,6 +1,6 @@
 import React from 'react'
 
-function SelectInput({ label, name, list = [], value, onChange, placeholder = 'Selecione...', required = false }) {
+function SelectInput({label, name, list = [], value, onChange, placeholder = 'Selecione...', required = false }) {
   return (
     <div>
       {label && <label className="block text-sm font-medium text-text mb-1" htmlFor={name}>{label}</label>}
@@ -17,7 +17,7 @@ function SelectInput({ label, name, list = [], value, onChange, placeholder = 'S
         {list.map((item, i) => {
           // suporta lista de strings ou objetos { id, nome } / { value, label }
           const val = item?.id ?? item?.value ?? item
-          const labelText = item?.nome ?? item?.label ?? item
+          const labelText = item?.name ?? item?.nome ?? item?.label ?? item
           return (
             <option key={i} value={val}>{labelText}</option>
           )

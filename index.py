@@ -1,1 +1,0 @@
-valor1 = input()

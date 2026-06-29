@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../util/base/baseEntity.entity';
 import { Category } from '../category/category.entity';
 import { BankAccount } from '../bank-account/bank-account.entity';
-import { PaymentMethodType, PaymentStatusType } from 'src/types/Enums';
+import { PaymentMethodType, PaymentStatusType } from '../../types/Enums';
 
 @Entity()
 export class Transaction extends BaseEntity {

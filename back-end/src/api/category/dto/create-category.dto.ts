@@ -1,18 +1,21 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from 'src/api/user/user.entity';
-import { BaseDto } from 'src/api/util/base/dto/baseDto';
-import { IncomeExpenseType } from 'src/types/Enums';
+import { BaseDto } from '../../util/base/dto/baseDto';
+import { IncomeExpenseType } from '../../../types/Enums';
+import { User } from '../../user/user.entity';
 
 export class CreateCategoryDto extends BaseDto {
   @ApiProperty()
-  name: string;
+  name!: string;
 
   @ApiProperty()
-  bank: string;
+  bank!: string;
 
   @ApiProperty()
-  user: User;
+  user!: User;
 
   @ApiProperty()
-  incomeExpensive: IncomeExpenseType;
+  description!: string;
+
+  @ApiProperty()
+  incomeExpensive!: IncomeExpenseType;
 }

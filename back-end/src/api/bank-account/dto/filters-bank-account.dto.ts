@@ -6,4 +6,7 @@ export class BankAccountFilter {
 
   @ApiProperty({ name: 'user', required: false, example: '1' })
   user?: number;
+
+  @ApiProperty({ name: 'userId', required: false, example: 1 })
+  userId?: number;
 }

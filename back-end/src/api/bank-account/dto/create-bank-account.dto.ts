@@ -1,23 +1,23 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from 'src/api/user/user.entity';
-import { BaseDto } from 'src/api/util/base/dto/baseDto';
+import { BaseDto } from '../../util/base/dto/baseDto';
+import { User } from '../../user/user.entity';
 
 export class CreateBankAccountDto extends BaseDto {
   @ApiProperty()
-  name: string;
+  name!: string;
 
   @ApiProperty()
-  isActive: boolean;
+  isActive!: boolean;
 
   @ApiProperty()
   icon?: Buffer;
 
   @ApiProperty()
-  bank: string;
+  bank!: string;
 
   @ApiProperty()
-  balance: number;
+  balance!: number;
 
   @ApiProperty()
-  user: User;
+  user!: User;
 }
