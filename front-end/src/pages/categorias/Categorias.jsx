@@ -33,7 +33,6 @@ function Categorias() {
     const init = async () => {
       try {
         const { data } = await getCategories();
-        console.log(data)
         setCategories(data.items ?? data);
       } catch (error) {
         console.error('Erro ao carregar categorias:', error);

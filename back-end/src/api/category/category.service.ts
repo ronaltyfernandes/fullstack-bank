@@ -27,7 +27,7 @@ export class CategoryService {
     const query = this.repository
       .createQueryBuilder('category')
       .leftJoinAndSelect('category.user', 'user')
-      .orderBy('category.id', 'DESC');
+      .orderBy('category.name', 'DESC');
 
     if (filter.userId) {
       query.andWhere('user.id = :userId', { userId: filter.userId });

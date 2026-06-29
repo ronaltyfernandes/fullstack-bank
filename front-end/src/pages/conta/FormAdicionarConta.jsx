@@ -13,7 +13,7 @@ function FormAdicionarConta({
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2">
       {/* Nome */}
-      <div className="col-span-2">
+      <div className="row-span-2">
         <InputForm
           label="Nome *"
           id="name"
@@ -23,11 +23,32 @@ function FormAdicionarConta({
           onChange={handleChange}
           required
         />
+
+        <InputForm
+          label="Banco *"
+          id="bank"
+          name="bank"
+          placeholder="Ex: Nubank"
+          value={formState.bank || ""}
+          onChange={handleChange}
+          required
+        />
       </div>
 
-      {/* STATUS */}
-      <InputSelectStatusConta onChange={handleChange} value={formState.status}/>
-
+      {/* Valor */}
+      <div>
+        <InputForm
+          label="Saldo (R$) *"
+          id="balance"
+          name="balance"
+          type="number"
+          step="0.01"
+          placeholder="0,00"
+          value={formState.balance || ""}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
       {/* Descrição */}
       <div className="col-span-2">

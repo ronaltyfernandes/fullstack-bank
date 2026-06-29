@@ -88,8 +88,8 @@ export async function createBankAccount(bankAccount) {
   return fullStackApi.post("/bank-account", bankAccount);
 }
 
-export async function getBankAccounts(params) {
-  return fullStackApi.get("/bank-account", { params });
+export async function getBankAccounts() {
+  return fullStackApi.get("/bank-account");
 }
 
 export async function getBankAccountById(id) {
@@ -121,7 +121,7 @@ export async function createTransaction(transaction) {
   return fullStackApi.post("/transaction", transaction);
 }
 
-export async function deleteTransacion(id) {
+export async function deleteTransaction(id) {
   return fullStackApi.delete(`/transaction/${id}`);
 }
 

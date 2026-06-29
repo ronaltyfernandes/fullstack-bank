@@ -26,7 +26,16 @@ export class TransactionService {
   ): Promise<Pagination<SelectTransactionDto>> {
     const query = this.repository
       .createQueryBuilder('transaction')
+      .leftJoinAndSelect('transaction.bankAccount', 'bankAccount')
+      .leftJoinAndSelect('bankAccount.user', 'user')
+      .leftJoinAndSelect('transaction.category', 'category') // <- adicione esta linha
       .orderBy('transaction.id', 'DESC');
+
+    // filtra por userId via bankAccount
+    if (filter.userId) {
+      query.andWhere('user.id = :userId', { userId: filter.userId });
+      delete filter.userId; // evita que applyFilters tente usar também
+    }
 
     applyFilters(query, filter, 'transaction');
 

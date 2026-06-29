@@ -7,6 +7,7 @@ export class SelectBankAccountDto extends CreateBankAccountDto {
     this.id = bankAccount.id;
     this.name = bankAccount.name;
     this.balance = bankAccount.balance;
+    this.bank = bankAccount.bank;
     this.createdAt = bankAccount.createdAt;
     this.icon = bankAccount.icon;
     this.isActive = bankAccount.isActive;

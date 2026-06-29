@@ -49,7 +49,7 @@ export class FilterTransactionDto {
   bankAccount?: BankAccount;
 
   @ApiProperty({ required: false, example: 1 })
-  user?: User;
+  userId?: User;
 
   @ApiProperty({ required: false, example: 'INCOME' })
   incomeExpense?: IncomeExpenseType;

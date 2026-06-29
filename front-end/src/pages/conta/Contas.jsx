@@ -9,40 +9,42 @@ import { getBankAccounts, createBankAccount, updateBankAccount, deleteBankAccoun
 
 const emptyForm = {
   name: "",
-  banco: "",
-  saldo: "0.00",
-  color: "",
-  status: "ativa",
+  bank: "",
+  balance: "0.00",
+  icon: "",
 };
 
 const columns = [
-  { header: "Status", accessor: "status" },
+  { header: "Status", accessor: "isActive" },
   { header: "Nome", accessor: "name" },
   {
     header: "Saldo",
-    accessor: "saldo",
+    accessor: "balance",
     render: (value) => `R$ ${Number(value).toFixed(2)}`,
   },
-  { header: "Banco", accessor: "banco" },
-  { header: "Cor", accessor: "color" },
+  { header: "Banco", accessor: "bank" },
+  { header: "Icon", accessor: "icon" },
 ];
 
 function Contas() {
   const [modal, setModal] = useState(null);
   const [selected, setSelected] = useState(null);
   const [formState, setFormState] = useState(emptyForm);
+  const userId = localStorage.getItem('finan_user_id');
   const [contas, setContas] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const refreshContas = async () => {
-    const { data } = await getBankAccounts();
+    if (!userId) return;
+    const { data } = await getBankAccounts({ userId });
     setContas(data.items ?? data);
   };
 
   useEffect(() => {
     const init = async () => {
       try {
-        await refreshContas();
+        const { data } = await getBankAccounts();
+        setContas(data.items ?? data);
       } catch (error) {
         console.error("Erro ao carregar contas:", error);
       } finally {
@@ -90,19 +92,18 @@ function Contas() {
       if (formState.id) {
         await updateBankAccount(formState.id, {
           name: formState.name,
-          banco: formState.banco,
-          saldo: formState.saldo,
-          color: formState.color,
-          status: formState.status,
+          bank: formState.bank,
+          balance: formState.balance,
+          icon: formState.icon,
         });
       } else {
         const userId = localStorage.getItem("finan_user_id");
+        console.log(formState.bank)
         await createBankAccount({
           name: formState.name,
-          banco: formState.banco,
-          saldo: formState.saldo,
-          color: formState.color,
-          status: formState.status,
+          bank: formState.bank,
+          balance: formState.balance,
+          icon: formState.icon,
           user: { id: userId },
         });
       }
