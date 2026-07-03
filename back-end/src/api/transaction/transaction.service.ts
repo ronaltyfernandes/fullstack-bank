@@ -16,10 +16,12 @@ export class TransactionService {
     private readonly repository: Repository<Transaction>,
   ) {}
 
+  //Create
   async create(createTransactionDto: CreateTransactionDto) {
     return this.repository.save(createTransactionDto);
   }
 
+  //Get
   async findAll(
     paginationOptions: IPaginationOptions,
     filter: FilterTransactionDto,
@@ -45,21 +47,54 @@ export class TransactionService {
     return new Pagination<SelectTransactionDto>(items, results.meta);
   }
 
+  async getTotalsByCategory(filter: FilterTransactionDto) {
+    const { incomeExpense, userId, ...filters } = filter;
+
+    const query = this.repository
+      .createQueryBuilder('transaction')
+      .leftJoin('transaction.bankAccount', 'bankAccount')
+      .leftJoin('bankAccount.user', 'user')
+      .leftJoin('transaction.category', 'category')
+      .select('category.id', 'id')
+      .addSelect('category.name', 'label')
+      .addSelect('SUM(transaction.value)', 'value')
+      .groupBy('category.id')
+      .addGroupBy('category.name');
+
+    if (incomeExpense) {
+      query.andWhere('category.incomeExpense = :incomeExpense', { incomeExpense },);
+    }
+
+    if (filter.userId) {
+      query.andWhere('user.id = :userId', { userId: filter.userId });
+      delete filter.userId; // evita que applyFilters tente usar também
+    }
+
+    applyFilters(query, filters, 'transaction');
+
+    const raw = await query.getRawMany();
+
+    return raw.map(item => ({
+      id: Number(item.id),
+      label: item.label,
+      value: Number(item.value),
+    }));
+  }
+
   async findOne(id: number) {
     return this.repository.findOneBy({ id });
   }
 
+  //Update
   async update(id: number, updateTransactionDto: UpdateTransactionDto) {
     const { ...rest } = updateTransactionDto;
 
-    const transaction = this.repository.create({
-      id,
-      ...rest,
-    });
+    const transaction = this.repository.create({id, ...rest,});
 
     return this.repository.save(transaction);
   }
 
+  //Delete
   async delete(id: number) {
     return this.repository.delete(id);
   }

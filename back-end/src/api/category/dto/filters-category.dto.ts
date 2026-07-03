@@ -9,8 +9,8 @@ export class FilterCategoryDto {
   @ApiProperty({ name: 'name', required: false })
   name?: string;
 
-  @ApiProperty({ name: 'incomeExpensive', required: false })
-  incomeExpensive?: IncomeExpenseType;
+  @ApiProperty({ name: 'incomeExpense', required: false })
+  incomeExpense?: IncomeExpenseType;
 
   @ApiProperty({ name: 'user', required: false })
   user?: User;

@@ -14,7 +14,7 @@ export class Category extends BaseEntity {
   description!: string;
 
   @Column({ type: 'enum', enum: IncomeExpenseType, nullable: false })
-  incomeExpensive!: IncomeExpenseType;
+  incomeExpense!: IncomeExpenseType;
 
   @ManyToOne(() => User, { nullable: false })
   @JoinColumn({ name: 'user_id' })

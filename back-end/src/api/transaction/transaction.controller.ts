@@ -9,7 +9,6 @@ import { SelectTransactionDto } from './dto/select-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth-guard';
 
-@UseGuards(JwtAuthGuard)
 @Controller('transaction')
 export class TransactionController {
   constructor(private readonly transactionService: TransactionService) {}
@@ -29,6 +28,11 @@ export class TransactionController {
       page: paginationOptions.page ?? 1,
     };
     return this.transactionService.findAll(options, filterTransactionDto);
+  }
+
+  @Get('totals-by-category')
+  async getTotalsByCategory(@Query() filter: FilterTransactionDto) {
+    return this.transactionService.getTotalsByCategory(filter);
   }
 
   @Get(':id')
