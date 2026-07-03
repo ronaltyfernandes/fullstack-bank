@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Table } from "../../components/tabelas/Tabelas";
-// import { getTransactions, deleteTransaction } from "../../services/api";
 import DateFilter from "../../ui/filtros/DateFilter";
 import ButtonAdicionar from "../../ui/AdicionarValores/ButtonAdicionar";
 import ModalAdicionarTrasacoes from "./ModalAdicionarTrasacoes";
 import ModalEditarTrasacoes from "./ModalEditarTrasacoes";
 import ModalDeletar from "../../ui/Modais/ModalDeletar";
+import { createTransaction, deleteTransaction, getBankAccounts, getTransactions, updateTransaction } from "../../services/api";
 
 const emptyForm = {
   name: "",
@@ -13,7 +13,7 @@ const emptyForm = {
   value: "",
   category: "",
   bankAccount: "",
-  paymentStatus: "Pendente",
+  paymentStatus: "PENDING",
   paymentMethod: "",
   date: "",
 };
@@ -29,71 +29,39 @@ const columns = [
   { header: "Forma De Pagamento", accessor: "paymentMethod" },
 ];
 
-const data = [
-  {
-    name: "Compra no Supermercado",
-    description: "Compras semanais de alimentos",
-    value: 150.5,
-    category: "Alimentação",
-    bankAccount: "Conta Corrente",
-    paymentStatus: "Pago",
-    paymentMethod: "Cartão de Crédito",
-    date: "2023-10-01",
-  },
-  {
-    name: "Salário",
-    description: "Pagamento mensal",
-    value: 3000.0,
-    category: "Renda",
-    bankAccount: "Conta Salário",
-    paymentStatus: "Recebido",
-    paymentMethod: "Transferência",
-    date: "2023-10-01",
-  },
-  {
-    name: "Transporte Público",
-    description: "Passagem de ônibus",
-    value: 4.5,
-    category: "Transporte",
-    bankAccount: "Conta Corrente",
-    paymentStatus: "Pago",
-    paymentMethod: "Dinheiro",
-    date: "2023-10-02",
-  },
-  {
-    name: "Conta de Luz",
-    description: "Fatura mensal de energia",
-    value: 120.0,
-    category: "Utilidades",
-    bankAccount: "Conta Corrente",
-    paymentStatus: "Pendente",
-    paymentMethod: "Débito Automático",
-    date: "2023-10-05",
-  },
-  {
-    name: "Freelance",
-    description: "Projeto de desenvolvimento web",
-    value: 800.0,
-    category: "Renda Extra",
-    bankAccount: "Conta Poupança",
-    paymentStatus: "Recebido",
-    paymentMethod: "Pix",
-    date: "2023-10-10",
-  },
-];
-
-// modal: null | "adicionar" | "editar" | "deletar"
 function Transacoes() {
   const [modal, setModal] = useState(null);
   const [selected, setSelected] = useState(null);
   const [formState, setFormState] = useState(emptyForm);
+  const userId = localStorage.getItem('finan_user_id');
+  const [transacoes, setTransacoes] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const refreshTransacoes = async () => {
+    const { data } = await getTransactions();
+    const items = (data.items ?? data).map((t) => ({
+      ...t,
+      bankAccountId: t.bankAccount?.id,
+      categoryId: t.category?.id,
+      bankAccount: t.bankAccount?.name ?? t.bankAccount,
+      category: t.category?.name ?? t.category,
+      dateForInput: t.date?.split('T')[0],                          // <- para o input (yyyy-mm-dd)
+      date: t.date ? new Date(t.date).toLocaleDateString('pt-BR') : '', // <- para a tabela (dd/mm/yyyy)
+    }));
+    setTransacoes(items);
+  };
 
   useEffect(() => {
-    const fetchTransactions = async () => {
-      // const transactions = await getTransactions();
-      // console.log(transactions.data);
+    const init = async () => {
+      try {
+        await refreshTransacoes();
+      } catch (error) {
+        console.error("Erro ao carregar transações:", error);
+      } finally {
+        setLoading(false);
+      }
     };
-    fetchTransactions();
+    init();
   }, []);
 
   const closeModal = () => {
@@ -103,7 +71,13 @@ function Transacoes() {
   };
 
   const handleEdit = (transacao) => {
-    setFormState({ ...emptyForm, ...transacao });
+    setFormState({
+      ...emptyForm,
+      ...transacao,
+      bankAccount: transacao.bankAccountId,
+      category: transacao.categoryId,
+      date: transacao.dateForInput,
+    });
     setSelected(transacao);
     setModal("editar");
   };
@@ -115,10 +89,11 @@ function Transacoes() {
 
   const handleConfirmDelete = async () => {
     try {
-      console.log("Excluir:", selected);
-      // await deleteTransaction(selected.id);
+      await deleteTransaction(selected.id);
+      await refreshTransacoes();
+      closeModal();
     } catch (error) {
-      console.error(error);
+      console.error("Erro ao deletar conta:", error);
     }
   };
 
@@ -131,15 +106,32 @@ function Transacoes() {
     e.preventDefault();
     try {
       if (formState.id) {
-        console.log("Atualizar:", formState);
-        // await updateTransaction(formState.id, formState);
+        await updateTransaction(formState.id, {
+          name: formState.name,
+          description: formState.description,
+          category: formState.category,
+          bankAccount: formState.bankAccount,
+          value: formState.value,
+          paymentStatus: formState.paymentStatus,
+          paymentMethod: formState.paymentMethod,
+          date: formState.date,
+        });
       } else {
-        console.log("Criar:", formState);
-        // await createTransaction(formState);
+        await createTransaction({
+          name: formState.name,
+          description: formState.description,
+          category: formState.category,
+          bankAccount: formState.bankAccount,
+          value: formState.value,
+          paymentStatus: formState.paymentStatus,
+          paymentMethod: formState.paymentMethod,
+          date: formState.date,
+        });
       }
+      await refreshTransacoes();
       closeModal();
     } catch (error) {
-      console.error(error);
+      console.error("Erro ao salvar conta:", error);
     }
   };
 
@@ -154,7 +146,7 @@ function Transacoes() {
 
       <Table
         columns={columns}
-        data={data}
+        data={transacoes}
         onEdit={handleEdit}
         onDelete={handleDelete}
       />

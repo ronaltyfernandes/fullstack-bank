@@ -2,6 +2,8 @@ import { Transaction } from '../transaction.entity';
 import { CreateTransactionDto } from './create-transaction.dto';
 
 export class SelectTransactionDto extends CreateTransactionDto {
+  userId: number;
+
   constructor(transaction: Transaction) {
     super();
     this.id = transaction.id;
@@ -11,8 +13,9 @@ export class SelectTransactionDto extends CreateTransactionDto {
     this.date = transaction.date;
     this.paymentStatus = transaction.paymentStatus;
     this.paymentMethod = transaction.paymentMethod;
-    this.category = transaction.category;
     this.bankAccount = transaction.bankAccount;
+    this.category = transaction.category;
+    this.userId = transaction.bankAccount?.user?.id;
     this.createdAt = transaction.createdAt;
     this.updatedAt = transaction.updatedAt;
   }

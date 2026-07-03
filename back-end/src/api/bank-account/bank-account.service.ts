@@ -24,13 +24,25 @@ export class BankAccountService {
     paginationOptions: IPaginationOptions,
     filter: BankAccountFilter,
   ): Promise<Pagination<SelectBankAccountDto>> {
+
     const query = this.repository
       .createQueryBuilder('bank-account')
-      .orderBy('bank-account.id', 'DESC');
-    applyFilters(query, filter, 'bank-account');
+      .leftJoinAndSelect('bank-account.user', 'user')
+      .orderBy('bank-account.name', 'DESC');
+
+    const { userId, ...restFilter } = filter;
+
+    applyFilters(query, restFilter, 'bank-account');
+
+    if (userId) {
+      query.andWhere('user.id = :userId', { userId });
+    }
 
     const results = await paginate<BankAccount>(query, paginationOptions);
-    const items = results.items.map((bankAccount) => new SelectBankAccountDto(bankAccount));
+
+    const items = results.items.map(
+      (bankAccount) => new SelectBankAccountDto(bankAccount),
+    );
 
     return new Pagination<SelectBankAccountDto>(items, results.meta);
   }

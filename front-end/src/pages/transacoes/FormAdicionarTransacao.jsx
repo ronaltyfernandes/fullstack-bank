@@ -1,18 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import InputForm from '../../ui/Inputs/InputForm';
 import SelectInput from '../../ui/Inputs/SelectInput';
 import StatusPagoPendent from './StatusPagoPendent';
+import { getCategories, getBankAccounts } from '../../services/api';
 
 function FormAdicionarTransacao({
   handleSubmit,
   handleChange,
   formState,
   onCancel,
-  categories = ["Utilidades", "Alimentação", "Lazer"],
-  bankAccounts = ["Conta Corrente", "Poupança"],
-  paymentMethods = ["Débito Automático", "Pix", "Boleto", "Cartão de Crédito"],
+  paymentMethods = ["PIX", "CASH", "DEBITCARD", "CREDITCARD", "TICKET"],
   submitText = "Salvar"
 }) {
+  const [categories, setCategories] = useState([]);
+  const [bankAccounts, setBankAccounts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [categoriaResponse, bankResponse] = await Promise.all([
+          getCategories(),
+          getBankAccounts(),
+        ]);
+
+        const categorias = categoriaResponse.data.items ?? categoriaResponse.data;
+        const banks = bankResponse.data.items ?? bankResponse.data;
+        
+        setCategories(categorias.map((c) => ({ id: c.id, name: c.name })));
+        setBankAccounts(banks.map((b) => ({ id: b.id, name: b.name })));
+      } catch (error) {
+        console.error("Erro ao carregar categorias/contas:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2">
       
@@ -32,7 +55,7 @@ function FormAdicionarTransacao({
       {/* Status de Pagamento */}
       <StatusPagoPendent 
         onChange={handleChange} 
-        value={formState.paymentStatus || "Pendente"}
+        value={formState.paymentStatus || "PENDING"}
       />
 
       {/* Valor */}

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 import { ApiPaginatedResponse } from '../util/base/pagination/api-paginated-response.decorator';
 import { PaginationOptionsQuery } from '../util/pagination-options.filter';
@@ -7,6 +7,7 @@ import { TransactionService } from './transaction.service';
 import { FilterTransactionDto } from './dto/filters-transaction.dto';
 import { SelectTransactionDto } from './dto/select-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
+import { JwtAuthGuard } from '../auth/jwt-auth-guard';
 
 @Controller('transaction')
 export class TransactionController {
@@ -27,6 +28,11 @@ export class TransactionController {
       page: paginationOptions.page ?? 1,
     };
     return this.transactionService.findAll(options, filterTransactionDto);
+  }
+
+  @Get('totals-by-category')
+  async getTotalsByCategory(@Query() filter: FilterTransactionDto) {
+    return this.transactionService.getTotalsByCategory(filter);
   }
 
   @Get(':id')

@@ -1,13 +1,13 @@
 import React from 'react';
 
 function StatusPagoPendent({ value, onChange }) {
-  const isPago = value === 'Pago';
+  const isPago = value === 'PAID';
 
   const toggleStatus = () => {
     onChange({
       target: {
         name: 'paymentStatus',
-        value: isPago ? 'Pendente' : 'Pago',
+        value: isPago ? 'PENDING' : 'PAID',
       },
     });
   };

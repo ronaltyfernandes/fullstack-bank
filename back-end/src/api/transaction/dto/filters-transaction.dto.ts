@@ -1,8 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IncomeExpenseType, PaymentMethodType, PaymentStatusType } from '../../../types/Enums';
-import { Category } from '../../category/category.entity';
-import { BankAccount } from '../../bank-account/bank-account.entity';
-import { User } from '../../user/user.entity';
 
 export class FilterTransactionDto {
   @ApiProperty({ required: false, example: 'Food' })
@@ -14,14 +11,12 @@ export class FilterTransactionDto {
   @ApiProperty({ required: false, example: '2024-05-01' })
   date?: Date;
 
-  // 🔹 Novo: intervalo de valor
   @ApiProperty({ required: false, example: 50.0, description: 'Valor mínimo da transação' })
   minValue?: number;
 
   @ApiProperty({ required: false, example: 1000.0, description: 'Valor máximo da transação' })
   maxValue?: number;
 
-  // 🔹 Novo: intervalo de data
   @ApiProperty({
     required: false,
     example: '2024-01-01',
@@ -43,13 +38,13 @@ export class FilterTransactionDto {
   paymentMethod?: PaymentMethodType;
 
   @ApiProperty({ required: false, example: 1 })
-  category?: Category;
+  category?: number;
 
   @ApiProperty({ required: false, example: 1 })
-  bankAccount?: BankAccount;
+  bankAccount?: number;
 
   @ApiProperty({ required: false, example: 1 })
-  user?: User;
+  userId?: number;
 
   @ApiProperty({ required: false, example: 'INCOME' })
   incomeExpense?: IncomeExpenseType;

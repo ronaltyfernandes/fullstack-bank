@@ -15,11 +15,12 @@ export class CategoryService {
     @InjectRepository(Category)
     private readonly repository: Repository<Category>,
   ) {}
-
+  //Create
   async create(createCategoryDto: CreateCategoryDto) {
     return this.repository.save(createCategoryDto);
   }
 
+  //Get
   async findAll(
     paginationOptions: IPaginationOptions,
     filter: FilterCategoryDto,
@@ -27,7 +28,7 @@ export class CategoryService {
     const query = this.repository
       .createQueryBuilder('category')
       .leftJoinAndSelect('category.user', 'user')
-      .orderBy('category.id', 'DESC');
+      .orderBy('category.name', 'DESC');
 
     if (filter.userId) {
       query.andWhere('user.id = :userId', { userId: filter.userId });
@@ -48,17 +49,16 @@ export class CategoryService {
     
   }
 
+  //Update
   async update(id: number, updateCategoryDto: UpdateCategoryDto) {
     const { ...rest } = updateCategoryDto;
 
-    const category = this.repository.create({
-      id,
-      ...rest,
-    });
+    const category = this.repository.create({id, ...rest,});
 
     return this.repository.save(category);
   }
 
+  //Delete
   async delete(id: number) {
     return this.repository.delete(id);
   }

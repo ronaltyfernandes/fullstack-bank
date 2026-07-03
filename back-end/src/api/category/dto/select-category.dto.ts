@@ -7,7 +7,8 @@ export class SelectCategoryDto extends CreateCategoryDto {
     this.id = category.id;
     this.name = category.name;
     this.user = category.user;
-    this.incomeExpensive = category.incomeExpensive;
+    this.description = category.description;
+    this.incomeExpense = category.incomeExpense;
     this.createdAt = category.createdAt;
     this.updatedAt = category.updatedAt;
   }

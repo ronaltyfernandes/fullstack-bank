@@ -19,10 +19,6 @@ function FormLogin() {
 
     try {
       const response = await login({ email, password })
-      console.log(response)
-      const token = response.data.token
-
-      localStorage.setItem('finan_login_token', token)
       navigate('/')
     } catch (err) {
       setError('E-mail ou senha inválidos.')
