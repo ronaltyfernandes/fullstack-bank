@@ -98,7 +98,6 @@ function Contas() {
         });
       } else {
         const userId = localStorage.getItem("finan_user_id");
-        console.log(formState.bank)
         await createBankAccount({
           name: formState.name,
           bank: formState.bank,

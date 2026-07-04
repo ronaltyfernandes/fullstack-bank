@@ -5,10 +5,8 @@ import { getTransactionTotalsByCategory } from "../../../services/api";
 import SelecaoDeFiltrosSemCategoria from "../../../ui/filtros/SelecaoDeFiltrosSemCategoria";
 import DateFilter from "../../../ui/filtros/DateFilter";
 
-function CardGraficoDunut() {
-  const [tipo, setTipo] = useState('todos');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+function CardGraficoDunut({ startDate, endDate }) {
+  const [tipo, setTipo] = useState('EXPENSE');
   const [dataPie, setDataPie] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -21,6 +19,7 @@ function CardGraficoDunut() {
         if (startDate)  params.startDate = startDate;
         if (endDate) params.endDate = endDate;
 
+        console.log("Params for API call:", startDate);
         setLoading(true);
         const response = await getTransactionTotalsByCategory(params);
 
@@ -50,11 +49,6 @@ function CardGraficoDunut() {
           setTipoSelecionado={setTipo}
           Icone={Pizza}
         />
-
-        <div className="flex-col md:flex items-center gap-1 w-full lg:flex-row lg:justify-start px-2">
-          <DateFilter onDateChange={(e) => setStartDate(e.target.value)} selectedDate={startDate} key="start-date" label="Data Inicial"/>
-          <DateFilter onDateChange={(e) => setEndDate(e.target.value)} selectedDate={endDate} key="end-date" label="Data Final"/>
-        </div>
       </div>
 
       <div className="w-full px-4 md:px-8">

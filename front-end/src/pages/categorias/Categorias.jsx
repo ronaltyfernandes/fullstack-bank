@@ -10,14 +10,14 @@ import { getMe, getCategories, createCategory, updateCategory, deleteCategory } 
 const emptyForm = {
   name: "",
   description: "",
-  incomeExpensive: "EXPENSE",
+  incomeExpense: "EXPENSE",
   color: ""
 };
 
 const columns = [
   { header: "Nome", accessor: "name" },
   { header: "Descrição", accessor: "description" },
-  { header: "Tipo", accessor: "incomeExpensive" },
+  { header: "Tipo", accessor: "incomeExpense" },
   { header: "Cor", accessor: "color" },
 ];
 
@@ -29,10 +29,12 @@ function Categorias() {
   const userId = localStorage.getItem('finan_user_id');
   const [loading, setLoading] = useState(true);
 
+  // Busca o usuário logado e depois as categorias dele
   useEffect(() => {
     const init = async () => {
       try {
-        const { data } = await getCategories();
+        const { data } = await getCategories({ userId: userId });
+        // ajuste conforme o formato de retorno da sua API (paginado ou array direto)
         setCategories(data.items ?? data);
       } catch (error) {
         console.error('Erro ao carregar categorias:', error);
@@ -45,7 +47,7 @@ function Categorias() {
 
   const refreshCategories = async () => {
     if (!userId) return;
-    const { data } = await getCategories({ userId });
+    const { data } = await getCategories({ userId: userId });
     setCategories(data.items ?? data);
   };
 
@@ -88,14 +90,14 @@ function Categorias() {
         await updateCategory(formState.id, {
           name: formState.name,
           description: formState.description,
-          incomeExpensive: formState.incomeExpensive,
+          incomeExpense: formState.incomeExpense,
         });
       } else {
         await createCategory({
           name: formState.name,
           description: formState.description,
-          incomeExpensive: formState.incomeExpensive,
-          user: { id: userId },
+          incomeExpense: formState.incomeExpense,
+          user: userId, 
         });
       }
       await refreshCategories();

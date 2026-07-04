@@ -27,6 +27,7 @@ export default function SelecaoDeFiltrosSemCategoria({
         <FiltroDespesaReceita
           tipoSelecionado={tipoSelecionado}
           setTipoSelecionado={setTipoSelecionado}
+          todosDesabilitado={true}
         />
       </div>
 

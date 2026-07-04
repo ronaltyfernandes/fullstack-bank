@@ -29,7 +29,7 @@ function FormAdicionarCategoria({
       {/* Status de despesa receita */}
       <InputSelectReceitaDespesa 
         onChange={handleChange} 
-        value={formState.incomeExpensive || "EXPENSE"}
+        value={formState.incomeExpense || "EXPENSE"}
       />
 
       {/* Descrição */}

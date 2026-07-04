@@ -13,16 +13,15 @@ export default function DateFilter({
         </label>
       )}
 
-      <div className="relative w-full">
+      <div className="relative w-full lg:w-52">
         <CalendarDays className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-500 pointer-events-none" />
 
         <input
           type="date"
           value={selectedDate}
-          onChange={(e) => onDateChange(e.target.value)}
+          onChange={(e) => onDateChange?.(e.target.value)}
           className="
             w-full
-            lg:w-52
             pl-10
             py-2
             border

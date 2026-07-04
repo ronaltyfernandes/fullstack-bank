@@ -9,7 +9,7 @@ import { SelectCategoryDto } from './dto/select-category.dto';
 import { FilterCategoryDto } from './dto/filters-category.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth-guard';
 
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}

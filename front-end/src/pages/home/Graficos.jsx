@@ -4,13 +4,13 @@ import CardGraficoLinha from "../../components/graficos/graficoLinha/CardGrafico
 
 //todo: colocar icone em filtros
 
-function Graficos() {
+function Graficos({ startDate, endDate }) {
   return (
     <div className="w-full flex flex-col items-center">
-      <CardGraficoLinha />
+      <CardGraficoLinha startDate={startDate} endDate={endDate} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mt-2">
-        <CardGraficoDunut />
-        <CardGraficoBarras />
+        <CardGraficoDunut startDate={startDate} endDate={endDate} />
+        <CardGraficoBarras startDate={startDate} endDate={endDate} />
       </div>
     </div>
   );
