@@ -12,6 +12,7 @@ const ROUTES_WITHOUT_USER_FILTER = ['/auth/me', '/', '/status'];
 fullStackApi.interceptors.request.use((config) => {
   const token = localStorage.getItem('finan_login_token');
   const userId = localStorage.getItem('finan_user_id');
+  const userName = localStorage.getItem('finan_user_name');
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -31,6 +32,7 @@ fullStackApi.interceptors.response.use(
     if (error.response?.status === 401) {
       localStorage.removeItem('finan_login_token');
       localStorage.removeItem('finan_user_id');
+      localStorage.removeItem('finan_user_name');
       window.location.href = '/login';
     }
     return Promise.reject(error);
@@ -40,9 +42,10 @@ fullStackApi.interceptors.response.use(
 // Auth
 export async function login(credentials) {
   const response = await fullStackApi.post("/auth/login", credentials);
+  console.log(response.data)
   localStorage.setItem('finan_user_id', response.data.user_id);
+  localStorage.setItem('finan_user_name', response.data.name);
   localStorage.setItem('finan_login_token', response.data.access_token);
-
   return response;
 }
 

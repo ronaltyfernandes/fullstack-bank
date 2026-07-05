@@ -19,7 +19,6 @@ function CardGraficoDunut({ startDate, endDate }) {
         if (startDate)  params.startDate = startDate;
         if (endDate) params.endDate = endDate;
 
-        console.log("Params for API call:", startDate);
         setLoading(true);
         const response = await getTransactionTotalsByCategory(params);
 

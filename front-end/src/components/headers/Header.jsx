@@ -5,13 +5,14 @@ import { HeaderDesktop } from "./HeaderDesktop";
 const TOKEN_KEY = "finan_login_token";
 
 function Header() {
+  const userName = localStorage.getItem('finan_user_name');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== "undefined"
       ? window.matchMedia("(max-width: 767px)").matches
       : false
   );
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     // Verifica se existe um token salvo
@@ -37,14 +38,15 @@ function Header() {
   // Limpa o token do localStorage e atualiza o estado de autenticação
   const handleLogout = useCallback(() => {
     localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem('finan_user_name');
     setIsAuthenticated(false);
     window.location.reload();
   }, []);
 
   return isMobile ? (
-    <HeaderMobile isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+    <HeaderMobile isAuthenticated={isAuthenticated} onLogout={handleLogout} userName={userName} />
   ) : (
-    <HeaderDesktop isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+    <HeaderDesktop isAuthenticated={isAuthenticated} onLogout={handleLogout} userName={userName} />
   );
 }
 

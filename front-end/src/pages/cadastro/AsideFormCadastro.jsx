@@ -11,7 +11,7 @@ function AsideFormCadastro() {
 
       <div className="relative z-10 h-full flex flex-col justify-center gap-6 p-8 md:p-16">
         <div className="w-full">
-          <div className='rounded-full w-28 md:w-40 bg-white mb-4'>
+          <div className='rounded-full w-40 bg-white mb-4'>
             <Logo />
           </div>
           <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-2 md:mb-4">

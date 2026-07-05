@@ -23,7 +23,7 @@ export default function CardGraficoPatrimonio() {
   }, []);
 
   return (
-    <div className="w-full mt-2 bg-bg-secondary rounded-md px-4 py-4">
+    <div className="w-full mt-2 bg-bg-secondary rounded-md px-2 lg:px-4 lg:py-4">
       <div className="flex flex-col lg:flex-row justify-between lg:items-center gap-4 px-2 lg:px-4 pt-4 mb-4 w-auto">
         {/* Título */}
         <div className="flex items-center gap-2">

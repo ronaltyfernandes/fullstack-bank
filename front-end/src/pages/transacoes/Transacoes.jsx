@@ -14,8 +14,8 @@ const emptyForm = {
   value: "",
   category: "",
   bankAccount: "",
-  paymentStatus: "PENDING",
-  paymentMethod: "",
+  paymentStatus: "PAID",
+  paymentMethod: "CASH",
   date: "",
 };
 
@@ -43,7 +43,6 @@ function Transacoes() {
 
   const refreshTransacoes = async ({ startDate, endDate }) => {
     const { data } = await getTransactions({ startDate, endDate });
-    console.log("Dados da API:", data);
     const items = (data.items ?? data).map((t) => ({
       ...t,
       bankAccountId: t.bankAccount?.id,

@@ -19,6 +19,7 @@ function CardsSalarios({ startDate, endDate }) {
           endDate,
         });
 
+        console.log(response.data);
         const apiData = response.data || [];
 
         const normalizedData = [
@@ -36,8 +37,6 @@ function CardsSalarios({ startDate, endDate }) {
             expense: 0,
           },
         ];
-
-        console.log("Dados normalizados:", normalizedData);
 
         setDados(normalizedData);
       } catch (error) {
