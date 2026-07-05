@@ -36,7 +36,7 @@ function FormAdicionarConta({
       </div>
 
       {/* Valor */}
-      <div>
+      {/* <div>
         <InputForm
           label="Saldo (R$) *"
           id="balance"
@@ -48,7 +48,7 @@ function FormAdicionarConta({
           onChange={handleChange}
           required
         />
-      </div>
+      </div> */}
 
       {/* Descrição */}
       <div className="col-span-2">

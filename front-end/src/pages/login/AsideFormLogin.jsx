@@ -23,7 +23,7 @@ function AsideFormLogin() {
       <AuthBackground />
 
       <div className="relative z-10 w-full">
-        <div className='rounded-full w-28 md:w-40 bg-white mb-4'>
+        <div className='rounded-full w-40 bg-white mb-4'>
           <Logo />
         </div>
 

@@ -4,6 +4,13 @@ import SelectInput from '../../ui/Inputs/SelectInput';
 import StatusPagoPendent from './StatusPagoPendent';
 import { getCategories, getBankAccounts } from '../../services/api';
 
+function getToday() {
+  const d = new Date();
+  const offset = d.getTimezoneOffset();
+  const local = new Date(d.getTime() - offset * 60 * 1000);
+  return local.toISOString().split("T")[0]; // yyyy-mm-dd
+}
+
 function FormAdicionarTransacao({
   handleSubmit,
   handleChange,
@@ -14,9 +21,24 @@ function FormAdicionarTransacao({
 }) {
   const [categories, setCategories] = useState([]);
   const [bankAccounts, setBankAccounts] = useState([]);
+  const [loadingOptions, setLoadingOptions] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+
+  // Preenche valores padrão apenas se ainda não existirem (não sobrescreve edição)
+  useEffect(() => {
+    if (!formState.date) {
+      handleChange({ target: { name: "date", value: getToday() } });
+    }
+    if (!formState.paymentStatus) {
+      handleChange({ target: { name: "paymentStatus", value: "PAID" } });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoadingOptions(true);
+      setLoadError(false);
       try {
         const [categoriaResponse, bankResponse] = await Promise.all([
           getCategories(),
@@ -25,20 +47,39 @@ function FormAdicionarTransacao({
 
         const categorias = categoriaResponse.data.items ?? categoriaResponse.data;
         const banks = bankResponse.data.items ?? bankResponse.data;
-        
+
         setCategories(categorias.map((c) => ({ id: c.id, name: c.name })));
         setBankAccounts(banks.map((b) => ({ id: b.id, name: b.name })));
       } catch (error) {
         console.error("Erro ao carregar categorias/contas:", error);
+        setLoadError(true);
+      } finally {
+        setLoadingOptions(false);
       }
     };
 
     fetchData();
   }, []);
 
+  // Assim que categorias carregarem, seleciona a primeira como padrão (se nada estiver selecionado)
+  useEffect(() => {
+    if (categories.length > 0 && !formState.category) {
+      handleChange({ target: { name: "category", value: categories[0].id } });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categories]);
+
+  // Assim que contas bancárias carregarem, seleciona a primeira como padrão (se nada estiver selecionado)
+  useEffect(() => {
+    if (bankAccounts.length > 0 && !formState.bankAccount) {
+      handleChange({ target: { name: "bankAccount", value: bankAccounts[0].id } });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bankAccounts]);
+
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2">
-      
+
       {/* Nome */}
       <div className="col-span-2">
         <InputForm
@@ -49,13 +90,14 @@ function FormAdicionarTransacao({
           value={formState.name || ""}
           onChange={handleChange}
           required
+          autoFocus
         />
       </div>
 
       {/* Status de Pagamento */}
-      <StatusPagoPendent 
-        onChange={handleChange} 
-        value={formState.paymentStatus || "PENDING"}
+      <StatusPagoPendent
+        onChange={handleChange}
+        value={formState.paymentStatus || "PAID"}
       />
 
       {/* Valor */}
@@ -66,6 +108,8 @@ function FormAdicionarTransacao({
           name="value"
           type="number"
           step="0.01"
+          min="0"
+          inputMode="decimal"
           placeholder="0,00"
           value={formState.value || ""}
           onChange={handleChange}
@@ -80,7 +124,7 @@ function FormAdicionarTransacao({
           id="date"
           name="date"
           type="date"
-          value={formState.date || ""}
+          value={formState.date || getToday()}
           onChange={handleChange}
           required
         />
@@ -95,7 +139,14 @@ function FormAdicionarTransacao({
           onChange={handleChange}
           required
           list={categories}
+          disabled={loadingOptions}
+          placeholder={loadingOptions ? "Carregando..." : "Selecione uma categoria"}
         />
+        {loadError && (
+          <p className="text-xs text-red-500 mt-1">
+            Não foi possível carregar as categorias.
+          </p>
+        )}
       </div>
 
       {/* Banco */}
@@ -107,7 +158,14 @@ function FormAdicionarTransacao({
           onChange={handleChange}
           required
           list={bankAccounts}
+          disabled={loadingOptions}
+          placeholder={loadingOptions ? "Carregando..." : "Selecione uma conta"}
         />
+        {loadError && (
+          <p className="text-xs text-red-500 mt-1">
+            Não foi possível carregar as contas bancárias.
+          </p>
+        )}
       </div>
 
       {/* Forma de Pagamento */}
@@ -147,9 +205,10 @@ function FormAdicionarTransacao({
 
         <button
           type="submit"
-          className="px-5 py-2 rounded-lg bg-primary text-white font-medium hover:opacity-90 transition-opacity"
+          disabled={loadingOptions}
+          className="px-5 py-2 rounded-lg bg-primary text-white font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {submitText}
+          {loadingOptions ? "Carregando..." : submitText}
         </button>
       </div>
     </form>
