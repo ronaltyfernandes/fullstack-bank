@@ -98,7 +98,6 @@ function Contas() {
         });
       } else {
         const userId = localStorage.getItem("finan_user_id");
-        console.log(formState.bank)
         await createBankAccount({
           name: formState.name,
           bank: formState.bank,
@@ -120,9 +119,6 @@ function Contas() {
         <h1 className="text-4xl font-bold lg:mb-4 mb-0 text-text">
           Contas Bancárias
         </h1>
-        <div className="flex flex-row gap-2 flex-wrap justify-end w-full md:w-auto">
-          <DateFilter />
-        </div>
       </div>
 
       {loading ? (

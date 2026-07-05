@@ -1,45 +1,44 @@
-import { useState } from "react";
-import SelecaoDeFiltros from "../../../ui/filtros/SelecaoDeFiltros";
+import { useEffect, useState } from "react";
+import { TrendingUp } from "lucide-react";
 import GraficoLinha from "./GraficoLinha";
-import { ChartArea } from "lucide-react";
+import DateFilter from "../../../ui/filtros/DateFilter";
+import { getTransactionMonthlyBalance } from "../../../services/api";
+import { formataPatrimonioEmMeses } from "../../../utils/formataData";
 
-//todo pegar dados reais para os graficos
-  const dados = [
-    { tempo: "Jan", valor: 10 },
-    { tempo: "Fev", valor: 18 },
-    { tempo: "Mar", valor: 12 },
-    { tempo: "Abr", valor: 25 },
-    { tempo: "Mai", valor: 20 },
-    { tempo: "Jun", valor: 30 },
-    { tempo: "Jul", valor: 28 },
-    { tempo: "Ago", valor: 35 },
-    { tempo: "Set", valor: 40 },
-    { tempo: "Out", valor: 38 },
-    { tempo: "Nov", valor: 45 },
-    { tempo: "Dez", valor: -20 }
-  ];
+export default function CardGraficoPatrimonio() {
+  const [dados, setDados] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-const listaCategoriasDaApi = ['Alimentação', 'Transporte', 'Salário', 'Lazer'];
-
-function CardGraficoLinha() {
-  const [categoria, setCategoria] = useState('todas');
-  const [tipo, setTipo] = useState('todos');
+  useEffect(() => {
+    const init = async () => {
+      try {
+        const response = await getTransactionMonthlyBalance({ userId: localStorage.getItem('finan_user_id') });
+        const formatadosData = formataPatrimonioEmMeses(response);
+        setDados(formatadosData);
+      } catch (error) {
+        console.error("Erro ao buscar dados do gráfico:", error);
+      }
+    }
+    init();
+  }, []);
 
   return (
-    <div className="w-full mt-2 bg-bg-secondary rounded-md sm:px-4">
-      <div className="flex flex-col lg:flex-row px-2 pt-4 justify-between mb-4 items-center gap-2 w-full">
-        <SelecaoDeFiltros
-          categorias={listaCategoriasDaApi}
-          categoriaSelecionada={categoria}
-          setCategoriaSelecionada={setCategoria}
-          tipoSelecionado={tipo}
-          setTipoSelecionado={setTipo}
-          Icone={ChartArea}
-        />
-      </div>
-      <GraficoLinha dados={dados}/>
-    </div>
-  )
-}
+    <div className="w-full mt-2 bg-bg-secondary rounded-md px-4 py-4">
+      <div className="flex flex-col lg:flex-row justify-between lg:items-center gap-4 px-2 lg:px-4 pt-4 mb-4 w-auto">
+        {/* Título */}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center p-2 rounded-xl bg-gray-100">
+            <TrendingUp className="w-6 h-6 text-primary-light" />
+          </div>
 
-export default CardGraficoLinha
+          <h2 className="text-text text-xl md:text-2xl font-medium">
+            Balaço Financeiro Mensal
+          </h2>
+        </div>
+      </div>
+
+      <GraficoLinha dados={dados} xKey="mes" yKey="patrimonio"/>
+
+    </div>
+  );
+}

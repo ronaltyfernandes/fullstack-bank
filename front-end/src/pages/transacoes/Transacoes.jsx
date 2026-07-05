@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Table } from "../../components/tabelas/Tabelas";
-import DateFilter from "../../ui/filtros/DateFilter";
+import DateRangeFilter from "../../ui/filtros/DateRangeFilter";
 import ButtonAdicionar from "../../ui/AdicionarValores/ButtonAdicionar";
 import ModalAdicionarTrasacoes from "./ModalAdicionarTrasacoes";
 import ModalEditarTrasacoes from "./ModalEditarTrasacoes";
 import ModalDeletar from "../../ui/Modais/ModalDeletar";
 import { createTransaction, deleteTransaction, getBankAccounts, getTransactions, updateTransaction } from "../../services/api";
+import getCurrentMonthRange from "../../utils/getCurrentMonthRange";
 
 const emptyForm = {
   name: "",
@@ -36,17 +37,21 @@ function Transacoes() {
   const userId = localStorage.getItem('finan_user_id');
   const [transacoes, setTransacoes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { startDate: initialStartDate, endDate: initialEndDate } = getCurrentMonthRange();
+  const [startDate, setStartDate] = useState(initialStartDate);
+  const [endDate, setEndDate] = useState(initialEndDate);
 
-  const refreshTransacoes = async () => {
-    const { data } = await getTransactions();
+  const refreshTransacoes = async ({ startDate, endDate }) => {
+    const { data } = await getTransactions({ startDate, endDate });
+    console.log("Dados da API:", data);
     const items = (data.items ?? data).map((t) => ({
       ...t,
       bankAccountId: t.bankAccount?.id,
       categoryId: t.category?.id,
       bankAccount: t.bankAccount?.name ?? t.bankAccount,
       category: t.category?.name ?? t.category,
-      dateForInput: t.date?.split('T')[0],                          // <- para o input (yyyy-mm-dd)
-      date: t.date ? new Date(t.date).toLocaleDateString('pt-BR') : '', // <- para a tabela (dd/mm/yyyy)
+      dateForInput: t.date?.split('T')[0],
+      date: t.date ? new Date(t.date).toLocaleDateString('pt-BR') : '',
     }));
     setTransacoes(items);
   };
@@ -54,7 +59,7 @@ function Transacoes() {
   useEffect(() => {
     const init = async () => {
       try {
-        await refreshTransacoes();
+        await refreshTransacoes({ startDate, endDate });
       } catch (error) {
         console.error("Erro ao carregar transações:", error);
       } finally {
@@ -62,7 +67,26 @@ function Transacoes() {
       }
     };
     init();
-  }, []);
+  }, [startDate, endDate]);
+
+  const handleMonthChange = (direction) => {
+    const currentDate = startDate || endDate || initialStartDate;
+    const [year, month] = currentDate.split("-").map(Number);
+    const nextDate = new Date(year, month - 1 + direction, 1);
+
+    const formatDate = (date) => {
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, "0");
+      const d = String(date.getDate()).padStart(2, "0");
+      return `${y}-${m}-${d}`;
+    };
+
+    const start = new Date(nextDate.getFullYear(), nextDate.getMonth(), 1);
+    const end = new Date(nextDate.getFullYear(), nextDate.getMonth() + 1, 0);
+
+    setStartDate(formatDate(start));
+    setEndDate(formatDate(end));
+  };
 
   const closeModal = () => {
     setModal(null);
@@ -137,10 +161,16 @@ function Transacoes() {
 
   return (
     <div className="p-6">
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-2">
         <h1 className="text-4xl font-bold lg:mb-4 mb-0 text-text">Transações</h1>
-        <div className="flex flex-row gap-2 flex-wrap justify-end w-full md:w-auto">
-          <DateFilter />
+        <div className="w-full md:w-auto">
+          <DateRangeFilter
+            startDate={startDate}
+            endDate={endDate}
+            onStartDateChange={setStartDate}
+            onEndDateChange={setEndDate}
+            onMonthChange={handleMonthChange}
+          />
         </div>
       </div>
 

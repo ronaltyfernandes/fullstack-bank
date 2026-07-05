@@ -1,17 +1,17 @@
 import CardGraficoBarras from "../../components/graficos/graficoBarras/CardGraficoBarras";
-import CardGraficoPizza from "../../components/graficos/graficoDonut/CardGraficoDunut";
+import CardGraficoDunut from "../../components/graficos/graficoDonut/CardGraficoDunut";
 import CardGraficoLinha from "../../components/graficos/graficoLinha/CardGraficoLinha";
 
 //todo: colocar icone em filtros
 
-function Graficos() {
+function Graficos({ startDate, endDate }) {
   return (
     <div className="w-full flex flex-col items-center">
-      <CardGraficoLinha />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mt-2">
-        <CardGraficoPizza />
-        <CardGraficoBarras />
+        <CardGraficoDunut startDate={startDate} endDate={endDate} />
+        <CardGraficoBarras startDate={startDate} endDate={endDate} />
       </div>
+      <CardGraficoLinha startDate={startDate} endDate={endDate} />
     </div>
   );
 }

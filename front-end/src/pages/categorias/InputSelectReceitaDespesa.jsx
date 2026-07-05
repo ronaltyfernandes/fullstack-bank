@@ -6,7 +6,7 @@ function InputSelectReceitaDespesa({ value, onChange }) {
   const toggleStatus = () => {
     onChange({
       target: {
-        name: 'incomeExpensive',
+        name: 'incomeExpense',
         value: isDespesa ? 'INCOME' : 'EXPENSE',
       },
     });

@@ -10,12 +10,12 @@
   --color-primary-light: #3B82F6;
   --color-primary-dark: #1E40AF;
 
-  --color-secondary: #0F766E;
+--color-secondary: #0F766E;
 
   /* Status */
   --color-success: #10B981;
   --color-warning: #F59E0B;
-  --color-error: #DC2626;
+  --color-error: #ff0000;
   --color-info: #0EA5E9;
 
   /* Layout */

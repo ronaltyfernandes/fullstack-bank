@@ -18,10 +18,7 @@ fullStackApi.interceptors.request.use((config) => {
   }
 
   if (userId && config.method === 'get' && !ROUTES_WITHOUT_USER_FILTER.includes(config.url)) {
-    config.params = {
-      userId,
-      ...config.params,
-    };
+    config.params = { userId, ...config.params};
   }
 
   return config;
@@ -105,8 +102,8 @@ export async function deleteBankAccount(id) {
 }
 
 // Transactions
-export async function getTransactions() {
-  return fullStackApi.get("/transaction");
+export async function getTransactions(params) {
+  return fullStackApi.get("/transaction", { params });
 }
 
 export async function getTransactionById(id) {
@@ -123,6 +120,14 @@ export async function createTransaction(transaction) {
 
 export async function deleteTransaction(id) {
   return fullStackApi.delete(`/transaction/${id}`);
+}
+
+export async function getTransactionTotalsByCategory(params) {
+  return fullStackApi.get("/transaction/totals-by-category", { params });
+} 
+
+export async function getTransactionMonthlyBalance(params) {
+  return fullStackApi.get("/transaction/monthly-balance", {params});
 }
 
 // Categorys

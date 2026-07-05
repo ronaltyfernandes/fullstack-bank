@@ -6,12 +6,17 @@ import SelectInput from "../Inputs/SelectInput";
 function FiltroDespesaReceita({
   tipoSelecionado,
   setTipoSelecionado,
+  todosDesabilitado = false,
 }) {
   const options = [
     { value: "todos", label: "Todos os Tipos" },
-    { value: "receita", label: "💰 Receita" },
-    { value: "despesa", label: "💸 Despesa" },
+    { value: "INCOME", label: "💰 Receita" },
+    { value: "EXPENSE", label: "💸 Despesa" },
   ];
+
+  if (todosDesabilitado) {
+    options.shift(); // Remove the first option (Todos os Tipos) if todosDesabilitado is true
+  }
 
   return (
     <div className="flex flex-col flex-1 min-w-0 w-full sm:max-w-[320px]">

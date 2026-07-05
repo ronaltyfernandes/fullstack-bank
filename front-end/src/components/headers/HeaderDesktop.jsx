@@ -4,7 +4,7 @@ import { ThemeSwitch } from "../../ui/Inputs/ThemeSwitch";
 import NavLinkHeader from "../../ui/NavLink";
 import Logo from "../../ui/Logo";
 
-export function HeaderDesktop() {
+export function HeaderDesktop({ isAuthenticated, onLogout }) {
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -35,21 +35,34 @@ export function HeaderDesktop() {
       />
 
       <div className="space-x-1 flex items-center">
-        <Link
-          to="/login"
-          aria-label="Entrar"
-          className="rounded-xl px-4 py-2 text-text border border-gray-200 hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-zinc-700 dark:hover:bg-white/5"
-        >
-          Entrar
-        </Link>
+        {isAuthenticated ? (
+          <button
+            type="button"
+            onClick={onLogout}
+            aria-label="Sair"
+            className="rounded-xl px-4 py-2 text-text border border-gray-200 hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-zinc-700 dark:hover:bg-white/5"
+          >
+            Sair
+          </button>
+        ) : (
+          <>
+            <Link
+              to="/login"
+              aria-label="Entrar"
+              className="rounded-xl px-4 py-2 text-text border border-gray-200 hover:bg-white/5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-zinc-700 dark:hover:bg-white/5"
+            >
+              Entrar
+            </Link>
 
-        <Link
-          to="/cadastro"
-          aria-label="Cadastrar"
-          className="rounded-xl px-4 py-2 bg-primary text-white hover:brightness-95 transition-all  dark:bg-primary/90 dark:hover:brightness-90"
-        >
-          Cadastrar
-        </Link>
+            <Link
+              to="/cadastro"
+              aria-label="Cadastrar"
+              className="rounded-xl px-4 py-2 bg-primary text-white hover:brightness-95 transition-all  dark:bg-primary/90 dark:hover:brightness-90"
+            >
+              Cadastrar
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
