@@ -41,7 +41,7 @@ function CardGraficoDunut({ startDate, endDate }) {
   );
 
   return (
-    <div className="flex flex-col min-h-[420px] lg:min-h-[380px] bg-bg-secondary items-center justify-between rounded-md p-3 md:p-4">
+    <div className="flex flex-col h-full min-h-[420px] bg-bg-secondary rounded-md p-4">
       <div className="lex flex-col lg:flex-row lg:px-0 px-0 pt-2 justify-between mb-4 items-start lg:items-center gap-4 w-full">
         <SelecaoDeFiltrosSemCategoria
           categorias={createListaCategorias}

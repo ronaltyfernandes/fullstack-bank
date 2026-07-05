@@ -1,31 +1,29 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import DateRangeFilter from "../../ui/filtros/DateRangeFilter";
 import CardsSalarios from "./CardsSalarios";
 import Graficos from "./Graficos";
 import getCurrentMonthRange from "../../utils/getCurrentMonthRange";
+import { changeMonth, mesAtualEAnterior } from "../../utils/formataData";
 
 export function Home() {
   const { startDate: initialStartDate, endDate: initialEndDate } = getCurrentMonthRange();
   const [startDate, setStartDate] = useState(initialStartDate);
   const [endDate, setEndDate] = useState(initialEndDate);
+  const [mesAtual, mesAnterior] = useMemo(
+    () => mesAtualEAnterior(startDate),
+    [startDate]
+  );
 
   const handleMonthChange = (direction) => {
-    const currentDate = startDate || endDate || initialStartDate;
-    const [year, month] = currentDate.split("-").map(Number);
-    const nextDate = new Date(year, month - 1 + direction, 1);
+    const { startDate: newStartDate, endDate: newEndDate } = changeMonth({
+      startDate,
+      endDate,
+      initialDate: initialStartDate,
+      direction,
+    });
 
-    const formatDate = (date) => {
-      const y = date.getFullYear();
-      const m = String(date.getMonth() + 1).padStart(2, "0");
-      const d = String(date.getDate()).padStart(2, "0");
-      return `${y}-${m}-${d}`;
-    };
-
-    const start = new Date(nextDate.getFullYear(), nextDate.getMonth(), 1);
-    const end = new Date(nextDate.getFullYear(), nextDate.getMonth() + 1, 0);
-
-    setStartDate(formatDate(start));
-    setEndDate(formatDate(end));
+    setStartDate(newStartDate);
+    setEndDate(newEndDate);
   };
 
   return (
@@ -43,7 +41,7 @@ export function Home() {
           />
         </div>
       </div>
-      <CardsSalarios />
+      <CardsSalarios startDate={mesAtual} endDate={mesAnterior} />
       <Graficos startDate={startDate} endDate={endDate} />
     </div>
   );

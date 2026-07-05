@@ -9,6 +9,7 @@ import { SelectTransactionDto } from './dto/select-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth-guard';
 
+// @UseGuards(JwtAuthGuard)
 @Controller('transaction')
 export class TransactionController {
   constructor(private readonly transactionService: TransactionService) {}
@@ -35,10 +36,13 @@ export class TransactionController {
     return this.transactionService.getTotalsByCategory(filter);
   }
 
+  @Get('monthly-balance')
+  async getMonthlyBalance(@Query() filter: FilterTransactionDto) {
+    return this.transactionService.getMonthlyBalance(filter);
+  }
+
   @Get(':id')
-  @ApiResponse({
-    type: CreateTransactionDto,
-  })
+  @ApiResponse({type: CreateTransactionDto})
   findOne(@Param('id') id: string) {
     return this.transactionService.findOne(+id);
   }

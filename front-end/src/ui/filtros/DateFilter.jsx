@@ -8,7 +8,7 @@ export default function DateFilter({
   return (
     <div className="w-full lg:w-auto">
       {label && (
-        <label className="block mb-1 text-sm font-medium text-text/60">
+        <label className="block text-sm font-medium text-text/60">
           {label}
         </label>
       )}
@@ -25,7 +25,7 @@ export default function DateFilter({
             pl-10
             py-2
             border
-            border-gray-300
+            border-text/20
             rounded-md
             text-text
             focus:outline-none
