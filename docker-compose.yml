@@ -1,13 +1,13 @@
 services:
   postgres:
-    image: "postgres:17.2"
+    image: postgres:17.2
     container_name: postgres_db
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: "test"
-      POSTGRES_PASSWORD: "test"
-      POSTGRES_DB: "test"
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: test
     volumes:
       - ./data:/var/lib/postgresql/data
     networks:
@@ -17,7 +17,7 @@ services:
   backend:
     build:
       context: ./back-end
-      dockerfile: dockerfile   # ← adiciona isso
+      dockerfile: dockerfile
     container_name: backend_app
     command: npm run dev
     volumes:
@@ -36,9 +36,22 @@ services:
       - app-network
     restart: unless-stopped
 
+  frontend:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+    container_name: frontend_app
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
 networks:
   app-network:
     driver: bridge
 
 volumes:
-  backend_node_modules: 
+  backend_node_modules:
