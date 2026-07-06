@@ -8,6 +8,7 @@ services:
       POSTGRES_USER: test
       POSTGRES_PASSWORD: test
       POSTGRES_DB: test
+      B_NAME: test
     volumes:
       - ./data:/var/lib/postgresql/data
     networks:
