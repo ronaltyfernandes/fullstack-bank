@@ -46,14 +46,13 @@ export class CategoryService {
 
   async findOne(id: number) {
     return this.repository.findOneBy({ id });
-    
   }
 
   //Update
   async update(id: number, updateCategoryDto: UpdateCategoryDto) {
     const { ...rest } = updateCategoryDto;
 
-    const category = this.repository.create({id, ...rest,});
+    const category = this.repository.create({ id, ...rest });
 
     return this.repository.save(category);
   }

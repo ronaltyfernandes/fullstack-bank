@@ -24,7 +24,6 @@ export class BankAccountService {
     paginationOptions: IPaginationOptions,
     filter: BankAccountFilter,
   ): Promise<Pagination<SelectBankAccountDto>> {
-
     const query = this.repository
       .createQueryBuilder('bank-account')
       .leftJoinAndSelect('bank-account.user', 'user')
@@ -40,9 +39,7 @@ export class BankAccountService {
 
     const results = await paginate<BankAccount>(query, paginationOptions);
 
-    const items = results.items.map(
-      (bankAccount) => new SelectBankAccountDto(bankAccount),
-    );
+    const items = results.items.map((bankAccount) => new SelectBankAccountDto(bankAccount));
 
     return new Pagination<SelectBankAccountDto>(items, results.meta);
   }

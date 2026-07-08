@@ -30,13 +30,7 @@ export default function applyFilters<T extends ObjectLiteral, F extends object>(
     query.andWhere(`${alias}.name ILIKE :name`, { name: `%${name}%` });
   }
 
-  const allowedFields = [
-    'paymentMethod',
-    'paymentStatus',
-    'incomeExpense',
-    'value',
-    'date'
-  ];
+  const allowedFields = ['paymentMethod', 'paymentStatus', 'incomeExpense', 'value', 'date'];
 
   for (const [key, value] of Object.entries(otherFilters)) {
     if (!allowedFields.includes(key)) continue;
@@ -46,5 +40,5 @@ export default function applyFilters<T extends ObjectLiteral, F extends object>(
     query.andWhere(`${alias}.${key} = :${key}`, {
       [key]: value,
     });
-}
+  }
 }

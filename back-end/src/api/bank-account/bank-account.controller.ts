@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { BankAccountService } from './bank-account.service';
 import { BankAccountFilter } from './dto/filters-bank-account.dto';
@@ -25,7 +35,7 @@ export class BankAccountController {
     @Query() bankAccountFilter: BankAccountFilter,
   ) {
     const options: typeof paginationOptions = {
-      limit: paginationOptions.limit ?? 10,
+      limit: paginationOptions.limit ?? 100,
       page: paginationOptions.page ?? 1,
     };
     return this.bankAccountService.findAll(options, bankAccountFilter);

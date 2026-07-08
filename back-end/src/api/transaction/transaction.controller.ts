@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 import { ApiPaginatedResponse } from '../util/base/pagination/api-paginated-response.decorator';
 import { PaginationOptionsQuery } from '../util/pagination-options.filter';
@@ -9,7 +19,7 @@ import { SelectTransactionDto } from './dto/select-transaction.dto';
 import { UpdateTransactionDto } from './dto/update-transaction.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth-guard';
 
-// @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 @Controller('transaction')
 export class TransactionController {
   constructor(private readonly transactionService: TransactionService) {}
@@ -25,7 +35,7 @@ export class TransactionController {
     @Query() filterTransactionDto: FilterTransactionDto,
   ) {
     const options: typeof paginationOptions = {
-      limit: paginationOptions.limit ?? 10,
+      limit: paginationOptions.limit ?? 100,
       page: paginationOptions.page ?? 1,
     };
     return this.transactionService.findAll(options, filterTransactionDto);
@@ -42,7 +52,7 @@ export class TransactionController {
   }
 
   @Get(':id')
-  @ApiResponse({type: CreateTransactionDto})
+  @ApiResponse({ type: CreateTransactionDto })
   findOne(@Param('id') id: string) {
     return this.transactionService.findOne(+id);
   }

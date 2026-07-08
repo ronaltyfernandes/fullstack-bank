@@ -17,9 +17,9 @@ export class AuthService {
     }
     if (!user.password) {
       throw new UnauthorizedException('Senha não encontrada no banco');
-     }
+    }
     const isMatch = await bcrypt.compare(password, user.password);
-    if (user && (await bcrypt.compare(password, user.password))) {
+    if (user && isMatch) {
       // Remove o campo password do retorno
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password: _password, ...result } = user;

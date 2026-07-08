@@ -11,6 +11,6 @@ export class SelectUserDto extends CreateUserDto {
     this.foto = user.foto;
     this.isActive = user.isActive;
     this.updatedAt = user.updatedAt;
-    this.password = user.password
+    this.password = user.password;
   }
 }

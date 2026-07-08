@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 import { ApiPaginatedResponse } from '../util/base/pagination/api-paginated-response.decorator';
 import { PaginationOptionsQuery } from '../util/pagination-options.filter';
@@ -26,7 +36,7 @@ export class CategoryController {
     @Query() filterCategoryDto: FilterCategoryDto,
   ) {
     const options: typeof paginationOptions = {
-      limit: paginationOptions.limit ?? 10,
+      limit: paginationOptions.limit ?? 100,
       page: paginationOptions.page ?? 1,
     };
     return this.categoryService.findAll(options, filterCategoryDto);

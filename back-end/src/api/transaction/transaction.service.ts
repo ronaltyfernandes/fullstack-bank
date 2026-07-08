@@ -140,7 +140,7 @@ export class TransactionService {
   async update(id: number, updateTransactionDto: UpdateTransactionDto) {
     const { ...rest } = updateTransactionDto;
 
-    const transaction = this.repository.create({id, ...rest,});
+    const transaction = this.repository.create({ id, ...rest });
 
     return this.repository.save(transaction);
   }
