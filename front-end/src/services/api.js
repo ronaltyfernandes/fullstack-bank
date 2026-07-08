@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const url = "http://localhost:3000";
+// const url = "http://localhost:3000"; // para desenvolvimento local
+const url = import.meta.env.VITE_API_URL;
 
 export const fullStackApi = axios.create({
   baseURL: url,
@@ -12,7 +13,6 @@ const ROUTES_WITHOUT_USER_FILTER = ['/auth/me', '/', '/status'];
 fullStackApi.interceptors.request.use((config) => {
   const token = localStorage.getItem('finan_login_token');
   const userId = localStorage.getItem('finan_user_id');
-  const userName = localStorage.getItem('finan_user_name');
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;

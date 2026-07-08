@@ -34,12 +34,6 @@ function CardSaldo(props) {
 
   const CardIcon = cardIconMap[variant] ?? Wallet;
 
-  const gradientVariants = {
-    saldo:"bg-gradient-to-br from-blue-500 via-blue-600 to-blue-800",
-    despesas:"bg-gradient-to-br from-red-500 via-red-600 to-red-800",
-    receitas:"bg-gradient-to-br from-emerald-400 via-green-500 to-green-700",
-  };
-
   return (
     <CardContainer variant={variant} cor={cor}>
       <div className="relative z-10 flex flex-col justify-between h-full min-h-[110px]">

@@ -7,7 +7,6 @@ import { formataPatrimonioEmMeses } from "../../../utils/formataData";
 
 export default function CardGraficoPatrimonio() {
   const [dados, setDados] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const init = async () => {

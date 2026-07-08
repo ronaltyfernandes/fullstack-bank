@@ -19,6 +19,17 @@ export const formataDespesasEntradasEmMeses = (response) => response.data.map((i
     income: item.income,
 }));
 
+
+export const formatDate = (date) => {
+  if (typeof date === "string") return date;
+
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+
+  return `${y}-${m}-${d}`;
+};
+
 export const mesAtualEAnterior = (selectedDate) => {
     const [year, month] = (selectedDate || "").split("-").map(Number);
     const baseDate = Number.isNaN(year) || Number.isNaN(month)
@@ -28,14 +39,14 @@ export const mesAtualEAnterior = (selectedDate) => {
     const previousMonthStart = new Date(Date.UTC(baseDate.getUTCFullYear(), baseDate.getUTCMonth() - 1, 1));
     const currentMonthEnd = new Date(Date.UTC(baseDate.getUTCFullYear(), baseDate.getUTCMonth() + 1, 0));
 
-    const formatDate = (date) => {
+    const formatNewDate = (date) => {
         const yearValue = date.getUTCFullYear();
         const monthValue = String(date.getUTCMonth() + 1).padStart(2, "0");
         const dayValue = String(date.getUTCDate()).padStart(2, "0");
         return `${yearValue}-${monthValue}-${dayValue}`;
     };
 
-    return [formatDate(previousMonthStart), formatDate(currentMonthEnd)];
+    return [formatNewDate(previousMonthStart), formatNewDate(currentMonthEnd)];
 }
 
 export function changeMonth({ startDate, endDate, initialDate, direction }) {
@@ -43,14 +54,6 @@ export function changeMonth({ startDate, endDate, initialDate, direction }) {
 
   const [year, month] = currentDate.split("-").map(Number);
   const nextDate = new Date(year, month - 1 + direction, 1);
-
-  const formatDate = (date) => {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, "0");
-    const d = String(date.getDate()).padStart(2, "0");
-
-    return `${y}-${m}-${d}`;
-  };
 
   const start = new Date(nextDate.getFullYear(), nextDate.getMonth(), 1);
   const end = new Date(nextDate.getFullYear(), nextDate.getMonth() + 1, 0);

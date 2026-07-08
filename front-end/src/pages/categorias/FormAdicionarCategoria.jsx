@@ -19,7 +19,7 @@ function FormAdicionarCategoria({
           label="Nome *"
           id="name"
           name="name"
-          placeholder="Ex: Aluguel"
+          placeholder="Ex: ALGUEL"
           value={formState.name || ""}
           onChange={handleChange}
           required

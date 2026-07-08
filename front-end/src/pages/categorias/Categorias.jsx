@@ -5,7 +5,7 @@ import ButtonAdicionar from "../../ui/AdicionarValores/ButtonAdicionar";
 import ModalAdicionarCategoria from "./ModalAdicionarCategoria";
 import ModalEditarCategoria from "./ModalEditarCategoria";
 import ModalDeletar from "../../ui/Modais/ModalDeletar";
-import { getMe, getCategories, createCategory, updateCategory, deleteCategory } from "../../services/api"; // ajuste o caminho
+import { getCategories, createCategory, updateCategory, deleteCategory } from "../../services/api"; // ajuste o caminho
 
 const emptyForm = {
   name: "",
@@ -18,7 +18,7 @@ const columns = [
   { header: "Nome", accessor: "name" },
   { header: "Descrição", accessor: "description" },
   { header: "Tipo", accessor: "incomeExpense" },
-  { header: "Cor", accessor: "color" },
+  // { header: "Cor", accessor: "color" },
 ];
 
 function Categorias() {
@@ -43,7 +43,7 @@ function Categorias() {
       }
     };
     init();
-  }, []);
+  }, [userId]);
 
   const refreshCategories = async () => {
     if (!userId) return;
@@ -80,7 +80,8 @@ function Categorias() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormState((prev) => ({ ...prev, [name]: value }));
+    if (name === "name") setFormState((prev) => ({ ...prev, [name]: value.toUpperCase() }));
+    else setFormState((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {

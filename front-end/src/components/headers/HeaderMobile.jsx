@@ -6,11 +6,7 @@ import NavLinkHeader from "../../ui/NavLink";
 import Logo from "../../ui/Logo";
 import { getInitials } from "../../utils/getInitials";
 
-export function HeaderMobile({
-  isAuthenticated,
-  onLogout,
-  userName,
-}) {
+export function HeaderMobile({ isAuthenticated, onLogout, userName }) {
   const { theme, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const location = useLocation();
@@ -137,6 +133,7 @@ export function HeaderMobile({
                     p-3
                   "
                 >
+                 {/* Avatar com iniciais */}
                   <div
                     className="
                       w-11 h-11 rounded-full

@@ -4,7 +4,6 @@ import { getTransactionMonthlyBalance } from "../../services/api";
 
 function CardsSalarios({ startDate, endDate }) {
   const [dados, setDados] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const formatCurrency = (value) =>
     `R$ ${Number(value ?? 0).toFixed(2).replace(".", ",")}`;
@@ -12,14 +11,12 @@ function CardsSalarios({ startDate, endDate }) {
   useEffect(() => {
     const init = async () => {
       try {
-        setLoading(true);
         const response = await getTransactionMonthlyBalance({
           userId: localStorage.getItem("finan_user_id"),
           startDate,
           endDate,
         });
 
-        console.log(response.data);
         const apiData = response.data || [];
 
         const normalizedData = [
@@ -41,16 +38,14 @@ function CardsSalarios({ startDate, endDate }) {
         setDados(normalizedData);
       } catch (error) {
         console.error("Erro ao buscar dados do gráfico:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
     init();
   }, [startDate, endDate]);
 
-  const previousMonth = dados[0] || {};
-  const currentMonth = dados[1] || {};
+  const previousMonth = dados[1] || {};
+  const currentMonth = dados[0] || {};
 
   return (
     <div className="lg:grid-cols-3 md:grid-cols-2 grid-cols-1 grid gap-2">

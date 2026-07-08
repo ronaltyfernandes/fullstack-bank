@@ -7,7 +7,6 @@ import { formataDespesasEntradasEmMeses } from "../../../utils/formataData";
 
 function CardGraficoBarras() {
   const [dados, setDados] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const init = async () => {
