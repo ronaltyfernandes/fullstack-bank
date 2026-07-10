@@ -39,10 +39,22 @@ fullStackApi.interceptors.response.use(
   }
 );
 
+export async function waitForBackend(maxRetries = 20, delay = 3000) {
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      await getStatus();
+      return true;
+    } catch {
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+
+  return false;
+}
+
 // Auth
 export async function login(credentials) {
   const response = await fullStackApi.post("/auth/login", credentials);
-  console.log(response.data)
   localStorage.setItem('finan_user_id', response.data.user_id);
   localStorage.setItem('finan_user_name', response.data.name);
   localStorage.setItem('finan_login_token', response.data.access_token);

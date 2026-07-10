@@ -13,6 +13,7 @@ export function AppRoutes() {
     <Routes>
       {/* Rotas públicas */}
       <Route element={<DefaultLayout />}>
+      
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
 

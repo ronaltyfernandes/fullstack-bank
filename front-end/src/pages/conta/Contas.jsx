@@ -16,14 +16,14 @@ const emptyForm = {
 
 const columns = [
   { header: "Status", accessor: "isActive" },
-  // { header: "Nome", accessor: "name" },
+  { header: "Nome", accessor: "name" },
   // {
   //   header: "Saldo",
   //   accessor: "balance",
   //   render: (value) => `R$ ${Number(value).toFixed(2)}`,
   // },
   { header: "Banco", accessor: "bank" },
-  { header: "Icon", accessor: "icon" },
+  // { header: "Icon", accessor: "icon" },
 ];
 
 function Contas() {

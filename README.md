@@ -3,6 +3,47 @@
 Uma aplicação web desenvolvida para auxiliar no controle financeiro pessoal, permitindo o gerenciamento de receitas, despesas, categorias, metas e geração de relatórios para acompanhar a saúde financeira.
 
 ---
+<p align="center">
+  <img src="./docs/images/banner.png" alt="Banner do projeto" width="100%">
+</p>
+
+<p align="center">
+  <strong>Gerencie suas finanças de forma simples, organizada e intuitiva.</strong>
+</p>
+
+---
+
+## 🎥 Demonstração
+
+> **Projeto em funcionamento**
+
+<p align="center">
+  <img src="./docs/images/demo.gif" alt="Demonstração do sistema" width="100%">
+</p>
+
+> Caso o GitHub não exiba o GIF corretamente, você também pode adicionar um vídeo:
+
+<!--
+https://github.com/user-attachments/assets/SEU-VIDEO
+-->
+
+---
+
+## 📷 Screenshots
+
+| Login | Dashboard |
+|--------|-----------|
+| <img src="./docs/images/login.png" width="100%"> | <img src="./docs/images/dashboard.png" width="100%"> |
+
+| Receitas | Despesas |
+|----------|-----------|
+| <img src="./docs/images/receitas.png" width="100%"> | <img src="./docs/images/despesas.png" width="100%"> |
+
+| Categorias | Relatórios |
+|------------|------------|
+| <img src="./docs/images/categorias.png" width="100%"> | <img src="./docs/images/relatorios.png" width="100%"> |
+
+---
 
 ## 📖 Sobre o projeto
 
