@@ -122,7 +122,7 @@ function BackendBootstrap({ children }) {
           <p className="mt-4 text-center text-xs text-muted-foreground">
             Feito com 💻 e muito enérgetico por{" "}
             <a
-              href="https://SEU-LINK-AQUI.com"
+              href="https://ronaltyfernandes.github.io/portfolio/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-primary underline underline-offset-2 hover:opacity-80"
