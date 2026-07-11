@@ -7,7 +7,6 @@ import { login } from '../../services/api.js'
 
 function FormLogin() {
   const navigate = useNavigate()
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -20,7 +19,7 @@ function FormLogin() {
 
     try {
       await login({ email, password })
-      navigate('/')
+      window.location.href = '/'
     } catch (error) {
       setError('E-mail ou senha inválidos.')
     } finally {
@@ -46,24 +45,24 @@ function FormLogin() {
         Digite seus dados para continuar
       </p>
 
-      <div className="mb-6 rounded-xl border border-blue-200 bg-blue-50 dark:bg-blue-950/30 dark:border-blue-800 p-4">
+      <div className="mb-6 rounded-xl border border-primary-light bg-bg p-4">
         <div className="flex items-start gap-3">
           <Eye
             size={20}
-            className="text-blue-600 dark:text-blue-400 mt-0.5 shrink-0"
+            className="mt-0.5 shrink-0 text-primary-light"
           />
 
           <div className="flex-1">
-            <h3 className="font-semibold text-blue-700 dark:text-blue-300">
+            <h3 className="font-semibold text-primary-light">
               Conta para Demonstração
             </h3>
 
-            <p className="text-sm text-text mt-1">
+            <p className="mt-1 text-sm text-text">
               Este projeto faz parte do meu portfólio. Utilize a conta abaixo
               para explorar as funcionalidades sem precisar criar um cadastro.
             </p>
 
-            <div className="mt-3 rounded-lg border border-blue-100 dark:border-blue-900 bg-white/70 dark:bg-slate-900/40 p-3 space-y-1">
+            <div className="mt-3 rounded-lg border border-primary-light bg-bg-secondary  p-3 space-y-1">
               <p className="text-sm text-text">
                 <strong>E-mail:</strong> demo@financas.com
               </p>

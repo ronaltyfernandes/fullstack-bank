@@ -30,10 +30,8 @@ fullStackApi.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('finan_login_token');
-      localStorage.removeItem('finan_user_id');
-      localStorage.removeItem('finan_user_name');
-      window.location.href = '/login';
+      localStorage.clear();
+      window.location.href = '#/login';
     }
     return Promise.reject(error);
   }

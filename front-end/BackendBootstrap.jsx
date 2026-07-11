@@ -88,7 +88,7 @@ function BackendBootstrap({ children }) {
           </p>
 
           <p className="mt-2 text-center text-sm text-muted-foreground">
-                     Este projeto está hospedado em um plano gratuito.
+            Este projeto está hospedado em um plano gratuito.
             Quando fica algum tempo sem acessos, o servidor entra em modo de
             espera e precisa de alguns segundos para iniciar novamente.
           </p>
@@ -156,7 +156,7 @@ function BackendBootstrap({ children }) {
 
           <p className="mt-6 text-center text-xs text-muted-foreground">
             <a
-              href="https://SEU-LINK-AQUI.com"
+              href="https://ronaltyfernandes.github.io/portfolio/"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-primary underline underline-offset-2 hover:opacity-80"
