@@ -25,7 +25,6 @@ A aplicação está disponível online para teste:
 ## 📑 Sumário
 
 - [Deploy](#-deploy)
-- [Demonstração](#-demonstração)
 - [Screenshots](#-screenshots)
 - [Sobre o projeto](#-sobre-o-projeto)
 - [Tecnologias utilizadas](#-tecnologias-utilizadas)
@@ -43,29 +42,19 @@ A aplicação está disponível online para teste:
 
 ---
 
-## 🎥 Demonstração
-
-> **Projeto em funcionamento**
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/a8f4c760-0081-4d9c-ab9a-0fed35bd407c" alt="Demonstração do sistema" width="100%">
-</p>
-
----
-
 ## 📷 Screenshots
 
 | Login | Cadastro |
 |--------|-----------|
 | <img src="https://github.com/user-attachments/assets/431ca3c6-fedc-415e-bf5f-6b898c480484" width="100%"> | <img src="https://github.com/user-attachments/assets/be55221c-2f89-445b-b09c-70b2e7e36463" width="100%"> |
 
-| Dashboard |
+| Dashboard | .
 |--------|-----------|
 | <img src="https://github.com/user-attachments/assets/efa844d7-9bee-4191-bee8-30791d3468fd" width="100%"> | <img src="https://github.com/user-attachments/assets/82520ab1-cd15-46e9-ada6-43b1075d2a42" width="100%"> |
 
 | Categorias | Contas |
 |----------|-----------|
-| <img src="https://github.com/user-attachments/assets/921a7d5a-7a7d-4cfb-abd8-99ae61dc2341" width="100%"> | <img src="https://github.com/user-attachments/assets/f1118f29-92e8-4ba1-a2ad-996534b824b" width="100%"> |
+| <img src="https://github.com/user-attachments/assets/921a7d5a-7a7d-4cfb-abd8-99ae61dc2341" width="100%"> |
 
 | Trasações | Adicionar |
 |------------|------------|
@@ -97,30 +86,36 @@ Com ele é possível:
 
 ---
 
-## 🚀 Tecnologias utilizadas
+## 🚀 Tecnologias Utilizadas
 
-### Front-end
+### 🎨 Front-end
 
-* React
-* Vite
-* Tailwind CSS
-* React Router DOM
-* Axios
-* Lucide React
+<p>
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFD62E" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+  <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" />
+  <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white" />
+  <img src="https://img.shields.io/badge/Lucide-000000?style=for-the-badge&logo=lucide&logoColor=white" />
+</p>
 
-### Back-end
+### ⚙️ Back-end
 
-* Node.js
-* Express
-* TypeORM
-* PostgreSQL
-* JWT (JSON Web Token)
-* Bcrypt
+<p>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
+  <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeORM-FE0902?style=for-the-badge&logo=typeorm&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" />
+  <img src="https://img.shields.io/badge/Bcrypt-4A4A55?style=for-the-badge" />
+</p>
 
-### Infraestrutura
+### 🐳 Infraestrutura
 
-* Docker
-* Docker Compose
+<p>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/Docker_Compose-1D63ED?style=for-the-badge&logo=docker&logoColor=white" />
+</p>
 
 ---
 
@@ -256,8 +251,6 @@ http://localhost:3000
 ```bash
 docker compose up -d postgres
 ```
-
-> Caso o serviço do banco no `docker-compose.yml` possua outro nome, substitua `postgres` pelo nome correspondente.
 
 ### 2. Inicie o backend
 
