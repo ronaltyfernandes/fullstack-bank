@@ -1,10 +1,9 @@
-# 💰 Finan-Finanças Pessoais
+# 💰 Finan - Finanças Pessoais
 
 Uma aplicação web desenvolvida para auxiliar no controle financeiro pessoal, permitindo o gerenciamento de receitas, despesas, categorias, metas e geração de relatórios para acompanhar a saúde financeira.
 
----
 <p align="center">
-  <img src="./docs/images/banner.png" alt="Banner do projeto" width="100%">
+  <img src="https://github.com/user-attachments/assets/efa844d7-9bee-4191-bee8-30791d3468fd" alt="Banner do projeto" width="100%">
 </p>
 
 <p align="center">
@@ -13,35 +12,69 @@ Uma aplicação web desenvolvida para auxiliar no controle financeiro pessoal, p
 
 ---
 
+## 🌐 Deploy
+
+A aplicação está disponível online para teste:
+
+**🔗 [https://ronaltyfernandes.github.io/finan/#/login](https://ronaltyfernandes.github.io/finan/#/login)**
+
+> 💡 Use a conta demo disponível na tela de login para explorar o sistema sem precisar se cadastrar.
+
+---
+
+## 📑 Sumário
+
+- [Deploy](#-deploy)
+- [Demonstração](#-demonstração)
+- [Screenshots](#-screenshots)
+- [Sobre o projeto](#-sobre-o-projeto)
+- [Tecnologias utilizadas](#-tecnologias-utilizadas)
+- [Estrutura do projeto](#-estrutura-do-projeto)
+- [Funcionalidades](#-funcionalidades)
+- [Dashboard](#-dashboard)
+- [Autenticação](#-autenticação)
+- [Executando com Docker](#-executando-com-docker)
+- [Executando o projeto localmente](#-executando-o-projeto-localmente)
+- [Telas](#-telas)
+- [Próximas funcionalidades](#-possíveis-próximas-funcionalidades)
+- [Contribuindo](#-contribuindo)
+- [Licença](#-licença)
+- [Autor](#-autor)
+
+---
+
 ## 🎥 Demonstração
 
 > **Projeto em funcionamento**
 
 <p align="center">
-  <img src="./docs/images/demo.gif" alt="Demonstração do sistema" width="100%">
+  <img src="https://github.com/user-attachments/assets/a8f4c760-0081-4d9c-ab9a-0fed35bd407c" alt="Demonstração do sistema" width="100%">
 </p>
-
-> Caso o GitHub não exiba o GIF corretamente, você também pode adicionar um vídeo:
-
-<!--
-https://github.com/user-attachments/assets/SEU-VIDEO
--->
 
 ---
 
 ## 📷 Screenshots
 
-| Login | Dashboard |
+| Login | Cadastro |
 |--------|-----------|
-| <img src="./docs/images/login.png" width="100%"> | <img src="./docs/images/dashboard.png" width="100%"> |
+| <img src="https://github.com/user-attachments/assets/431ca3c6-fedc-415e-bf5f-6b898c480484" width="100%"> | <img src="https://github.com/user-attachments/assets/be55221c-2f89-445b-b09c-70b2e7e36463" width="100%"> |
 
-| Receitas | Despesas |
+| Dashboard |
+|--------|-----------|
+| <img src="https://github.com/user-attachments/assets/efa844d7-9bee-4191-bee8-30791d3468fd" width="100%"> | <img src="https://github.com/user-attachments/assets/82520ab1-cd15-46e9-ada6-43b1075d2a42" width="100%"> |
+
+| Categorias | Contas |
 |----------|-----------|
-| <img src="./docs/images/receitas.png" width="100%"> | <img src="./docs/images/despesas.png" width="100%"> |
+| <img src="https://github.com/user-attachments/assets/921a7d5a-7a7d-4cfb-abd8-99ae61dc2341" width="100%"> | <img src="https://github.com/user-attachments/assets/f1118f29-92e8-4ba1-a2ad-996534b824b" width="100%"> |
 
-| Categorias | Relatórios |
+| Trasações | Adicionar |
 |------------|------------|
-| <img src="./docs/images/categorias.png" width="100%"> | <img src="./docs/images/relatorios.png" width="100%"> |
+| <img src="https://github.com/user-attachments/assets/405f4d26-e2d6-45c2-b3ef-d62ed7f13f9b" width="100%"> | <img src="https://github.com/user-attachments/assets/b11060ac-8cac-472e-858e-245fdcd1329f" width="100%"> |
+
+| Mobile | Header Mobile |
+|------------|------------|
+| <img src="https://github.com/user-attachments/assets/7efb1d68-d163-4432-a502-951a1acbc27d" width="100%"> | <img src="https://github.com/user-attachments/assets/3d21f39f-b3e7-4f65-94fb-fb835546397b" width="100%"> |
+
 
 ---
 
@@ -55,11 +88,11 @@ Com ele é possível:
 * 💵 Cadastrar receitas.
 * 💸 Cadastrar despesas.
 * 🏷️ Organizar lançamentos por categorias.
-* 👤 Cadastrar Usuario e fazer login
+* 👤 Cadastrar usuário e fazer login.
 * 📅 Filtrar informações por período.
 * 📈 Visualizar gráficos e indicadores financeiros.
 * 👤 Gerenciar usuários.
-* 🔒 Autenticação com JWT e bycrypt.
+* 🔒 Autenticação com JWT e Bcrypt.
 * 🌙 Tema claro e escuro.
 
 ---
@@ -189,7 +222,7 @@ Após o login:
 ### Clone o projeto
 
 ```bash
-git clone https://github.com/seu-usuario/financas-pessoais.git
+git clone https://github.com/ronaltyfernandes/finan.git
 
 cd financas-pessoais
 ```
@@ -202,14 +235,12 @@ docker compose up --build
 
 Após iniciar:
 
-Frontend
-
+**Frontend**
 ```
 http://localhost:5173
 ```
 
-Backend
-
+**Backend**
 ```
 http://localhost:3000
 ```
@@ -251,13 +282,11 @@ npm run dev
 ### Endereços da aplicação
 
 **Frontend**
-
 ```
 http://localhost:5173
 ```
 
 **Backend**
-
 ```
 http://localhost:3000
 ```
@@ -268,25 +297,6 @@ http://localhost:3000
 * O PostgreSQL é executado em um container Docker.
 * Antes de iniciar o backend, certifique-se de que o container do banco de dados esteja em execução.
 * Caso o banco seja interrompido, a API não conseguirá estabelecer conexão até que o container seja iniciado novamente.
-
-
-## ⚙️ Variáveis de ambiente
-
-### Backend
-
-Crie um arquivo `.env`:
-
-```env
-PORT=3000
-
-DB_HOST=localhost
-DB_PORT=5432
-DB_USERNAME=postgres
-DB_PASSWORD=senha
-DB_DATABASE=financas
-
-JWT_SECRET=sua_chave_secreta
-```
 
 ---
 
@@ -305,7 +315,7 @@ O sistema possui telas para:
 
 ---
 
-## 📈 Possíveis Próximas funcionalidades
+## 📈 Possíveis próximas funcionalidades
 
 * Metas financeiras
 * Planejamento de orçamento

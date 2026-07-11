@@ -4,9 +4,9 @@ import BackendBootstrap from "../BackendBootstrap";
 
 function App() {
   return (
-    // <BackendBootstrap>
+    <BackendBootstrap>
       <AppRoutes />
-    // </BackendBootstrap>
+    </BackendBootstrap>
   );
 }
 

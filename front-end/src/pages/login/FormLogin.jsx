@@ -19,7 +19,8 @@ function FormLogin() {
 
     try {
       await login({ email, password })
-      window.location.href = '/'
+      window.location.href = 'https://ronaltyfernandes.github.io/finan/#/'
+      window.location.reload()
     } catch (error) {
       setError('E-mail ou senha inválidos.')
     } finally {

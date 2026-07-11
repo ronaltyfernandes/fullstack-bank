@@ -31,7 +31,8 @@ fullStackApi.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       localStorage.clear();
-      window.location.href = '#/login';
+      window.location.href = "https://ronaltyfernandes.github.io/finan/#/login";
+      window.location.reload();
     }
     return Promise.reject(error);
   }
